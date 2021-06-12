@@ -1,0 +1,65 @@
+{
+  "name": {
+    "en": "WhatsApp"
+  },
+  "class": "other",
+  "capabilities": [],
+  "images": {
+    "small": "./drivers/whatsapp/assets/images/small.jpg",
+    "large": "./drivers/whatsapp/assets/images/large.jpg"
+  },
+  "pair": [
+    {
+      "id": "login_credentials",
+      "template": "login_credentials",
+      "options": {
+        "usernameLabel": { "en": "Receiving phone number" },
+        "usernamePlaceholder": { "en": "+1 555 5555" },
+        "passwordLabel": { "en": "Apikey" },
+        "passwordPlaceholder": { "en": "See instructions at callmebot.com" }
+      }
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      },
+      "options": {
+        "singular": true
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Receiver information"
+      },
+      "children": [
+        {
+          "id": "number",
+          "type": "label",
+          "label": {
+            "en": "Number"
+          },
+          "value": "",
+          "hint": "The number of the phone to receive messages"
+        },
+        {
+          "id": "apikey",
+          "type": "password",
+          "label": {
+            "en": "Api key"
+          },
+          "value": "",
+          "hint": "Add \"+34 644 52 74 88\" as new Contact in the receiving Phone. Name it \"Homey CallMeBot\". Send this message \"I allow callmebot to send me messages\" to the new Contact created (using Whatsapp Messaging of course). The bot will answer you with your personal apikey (can take 2 minutes)"
+        }
+      ]
+    }
+  ]
+}

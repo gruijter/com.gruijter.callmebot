@@ -1,0 +1,254 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.gruijter.callmebot",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "name": {
+    "en": "CallMeBot"
+  },
+  "brandColor": "#f0a846",
+  "description": {
+    "en": "Send messages to your Whatsapp, Signal, Telegram and Facebook messenger"
+  },
+  "tags": {
+    "en": [
+      "whatsapp",
+      "signal",
+      "facebook",
+      "telegram",
+      "messenger",
+      "text",
+      "message",
+      "SMS"
+    ]
+  },
+  "category": [
+    "internet"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.jpg",
+    "large": "/assets/images/large.jpg"
+  },
+  "author": {
+    "name": "Robin de Gruijter",
+    "email": "gruijter@hotmail.com"
+  },
+  "copyright": "Robin de Gruijter (gruijter@hotmail.com)",
+  "license": " GPL-3.0-or-later",
+  "contributors": {
+    "developers": [
+      {
+        "name": "Robin de Gruijter",
+        "email": "gruijter@hotmail.com"
+      }
+    ],
+    "translators": [
+      {
+        "name": "🇬🇧 Robin"
+      },
+      {
+        "name": "🇳🇱 Robin"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "gruijter"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/gruijter/com.gruijter.callmebot/issues"
+  },
+  "homeyCommunityTopicId": 48374,
+  "api": {
+    "getLogs": {
+      "method": "GET",
+      "path": "/getlogs"
+    },
+    "deleteLogs": {
+      "method": "GET",
+      "path": "/deletelogs"
+    }
+  },
+  "flow": {
+    "actions": [
+      {
+        "id": "send",
+        "title": {
+          "en": "Send a message"
+        },
+        "titleFormatted": {
+          "en": "Send message [[msg]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=signal|whatsapp"
+          },
+          {
+            "name": "msg",
+            "type": "text",
+            "placeholder": {
+              "en": "Text"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Signal Messenger"
+      },
+      "class": "other",
+      "capabilities": [],
+      "images": {
+        "small": "./drivers/signal/assets/images/small.jpg",
+        "large": "./drivers/signal/assets/images/large.jpg"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "Receiving phone number"
+            },
+            "usernamePlaceholder": {
+              "en": "+1 555 5555"
+            },
+            "passwordLabel": {
+              "en": "Apikey"
+            },
+            "passwordPlaceholder": {
+              "en": "See instructions at callmebot.com"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Receiver information"
+          },
+          "children": [
+            {
+              "id": "number",
+              "type": "label",
+              "label": {
+                "en": "Number"
+              },
+              "value": "",
+              "hint": "The number of the phone to receive messages"
+            },
+            {
+              "id": "apikey",
+              "type": "password",
+              "label": {
+                "en": "Api key"
+              },
+              "value": "",
+              "hint": "Add \"+34 603 21 25 97\" as new Contact in the receiving Phone. Name it \"Homey CallMeBot\". Send this message \"I allow callmebot to send me messages\" to the new Contact created (using Signal Messaging of course). The bot will answer you with your personal apikey"
+            }
+          ]
+        }
+      ],
+      "id": "signal"
+    },
+    {
+      "name": {
+        "en": "WhatsApp"
+      },
+      "class": "other",
+      "capabilities": [],
+      "images": {
+        "small": "./drivers/whatsapp/assets/images/small.jpg",
+        "large": "./drivers/whatsapp/assets/images/large.jpg"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "Receiving phone number"
+            },
+            "usernamePlaceholder": {
+              "en": "+1 555 5555"
+            },
+            "passwordLabel": {
+              "en": "Apikey"
+            },
+            "passwordPlaceholder": {
+              "en": "See instructions at callmebot.com"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Receiver information"
+          },
+          "children": [
+            {
+              "id": "number",
+              "type": "label",
+              "label": {
+                "en": "Number"
+              },
+              "value": "",
+              "hint": "The number of the phone to receive messages"
+            },
+            {
+              "id": "apikey",
+              "type": "password",
+              "label": {
+                "en": "Api key"
+              },
+              "value": "",
+              "hint": "Add \"+34 644 52 74 88\" as new Contact in the receiving Phone. Name it \"Homey CallMeBot\". Send this message \"I allow callmebot to send me messages\" to the new Contact created (using Whatsapp Messaging of course). The bot will answer you with your personal apikey (can take 2 minutes)"
+            }
+          ]
+        }
+      ],
+      "id": "whatsapp"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+		<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+		<script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="settings.js" data-origin="settings"></script>
+		</head>
+	<body>
+		<div id="app">
+			<p data-i18n="settings.benefit" class="benefit">Send messages via a flow</p>
+			<div class="rTable tabs">
+				<div class="rTableRow">
+					<div id="tabb1" class="tab tab-inactive" onclick="showTab(1)" data-i18n="settings.tab1.title">Settings</div>
+					<div id="tabb2" class="tab tab-inactive" onclick="showTab(2)" data-i18n="settings.tab2.title">Log</div>
+				</div>
+			</div>
+			<div class="tab-content">
+				<div style="height:8px" class="panel"></div>
+
+				<!-- Instructions panel -->
+				<div id="tab1" class="panel" style="display: none;">
+					<fieldset class="listContainer">
+						<legend data-i18n="settings.tab1.instructionsTitle">Instructions</legend>
+						<p data-i18n="settings.tab1.instructions" class="instructions">Instructions</p>
+					</fieldset>				
+				</div>
+
+				<!-- Logging panel -->
+				<div id="tab2" class="panel">
+					<div class="setting">
+						<label class="settings-item-description" data-i18n="settings.tab2.deleteLogs">Delete</label>
+						<button id="deleteButton" class="btn" onclick="deleteLogs()" data-i18n="settings.tab2.deleteLogs">Delete</button>
+						<div id="loglines" class="instructions"></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>
+

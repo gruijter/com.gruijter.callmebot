@@ -1,0 +1,23 @@
+{
+    "id": "send",
+    "title": {
+      "en": "Send a message"
+    },
+    "titleFormatted": {
+      "en": "Send message [[msg]]"
+    },
+    "args": [
+      {
+        "type": "device",
+        "name": "device",
+        "filter": "driver_id=signal|whatsapp"
+      },
+      {
+        "name": "msg",
+        "type": "text",
+        "placeholder": {
+          "en": "Text"
+        }
+      }
+    ]
+}
