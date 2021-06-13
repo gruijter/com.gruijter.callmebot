@@ -1,0 +1,9 @@
+{
+	"type": "string",
+	"title": {
+		"en": "Last sent"
+	},
+	"getable": true,
+	"setable": false,
+	"icon": "./assets/last_sent.svg"
+}

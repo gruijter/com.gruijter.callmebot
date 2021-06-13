@@ -46,6 +46,11 @@ class Driver extends Homey.Driver {
 							number,
 							apikey,
 						},
+						driver: {
+							ds: {
+								driverId: this.ds.driverId,
+							},
+						},
 					},
 					msg: 'Homey can send messages to this device!',
 				};
@@ -63,6 +68,7 @@ class Driver extends Homey.Driver {
 						number,
 						apikey,
 					},
+					capabilities: ['last_sent'],
 				};
 				return device;
 			});
@@ -75,15 +81,24 @@ class Driver extends Homey.Driver {
 
 	// https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
 	// https://api.callmebot.com/whatsapp.php?phone=[phone_number]&text=[message]&apikey=[your_apikey]
+	// https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&text=[message]
+	// https://api.callmebot.com/text.php?user=[username]&text=[text]&html=[html_format]&links=[link_preview]
 	async send(args) {
 		try {
+			const { driverId } = args.device.driver.ds;
+			const query = {
+				text: args.msg,
+			};
+			if (driverId === 'telegram') query.user = args.device.settings.number;
+			if (driverId === 'signal' || driverId === 'whatsapp') {
+				query.phone = args.device.settings.number;
+			}
+			if (driverId === 'signal' || driverId === 'whatsapp' || driverId === 'fb') {
+				query.apikey = args.device.settings.apikey;
+			}
+
 			const headers = {
 				'Cache-Control': 'no-cache',
-			};
-			const query = {
-				phone: args.device.settings.number,
-				apikey: args.device.settings.apikey,
-				text: args.msg,
 			};
 			const options = {
 				hostname: 'api.callmebot.com',
@@ -91,14 +106,20 @@ class Driver extends Homey.Driver {
 				headers,
 				method: 'GET',
 			};
+
 			const result = await this._makeHttpsRequest(options, '');
 			if (result.statusCode !== 200) {
 				throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
 			}
-			const strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+
+			let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 			const signalOK = result.body.includes('Message sent to');
 			const whatsappOK = result.body.includes('Message queued');
-			if (!(signalOK || whatsappOK)) throw Error(strippedString);
+			const fbOK = result.body.includes('Message sent');
+			const telegramOK = result.body.includes('Status: Successful');
+			if (telegramOK) strippedString = 'Status: Successful';
+
+			if (!(signalOK || whatsappOK || fbOK || telegramOK)) throw Error(strippedString);
 			return Promise.resolve(strippedString);
 		} catch (error) {
 			this.error(error);

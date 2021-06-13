@@ -1,5 +1,8 @@
 {
   "1.0.0": {
     "en": "First release"
+  },
+  "1.1.0": {
+    "en": "Added FB Messenger. Added Telegram. Added device display - last sent date/time. New app image."
   }
 }

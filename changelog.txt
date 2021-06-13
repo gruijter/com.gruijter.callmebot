@@ -1,3 +1,4 @@
+v1.1.0  12.06.2021 Added FB Messenger. Added Telegram. Added device display - last sent date/time. New app image.
 v1.0.0  12.06.2021 First version. Supports text messages to WhatsApp and Signal.
 
 

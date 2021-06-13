@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.gruijter.callmebot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
@@ -63,6 +63,9 @@
   "bugs": {
     "url": "https://github.com/gruijter/com.gruijter.callmebot/issues"
   },
+  "source": "https://github.com/gruijter/com.gruijter.callmebot",
+  "homepage": "https://github.com/gruijter/com.gruijter.callmebot/blob/master/README.md",
+  "support": "https://community.athom.com/t/48374",
   "homeyCommunityTopicId": 48374,
   "api": {
     "getLogs": {
@@ -88,7 +91,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=signal|whatsapp"
+            "filter": "driver_id=signal|whatsapp|fb|telegram"
           },
           {
             "name": "msg",
@@ -103,88 +106,174 @@
   },
   "drivers": [
     {
+      "class": "other",
+      "capabilities": [
+        "last_sent"
+      ],
+      "energy": {
+        "usageConstant": 0
+      },
+      "images": {
+        "small": "/drivers/fb/assets/images/small.jpg",
+        "large": "/drivers/fb/assets/images/large.jpg"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "Receiving phone number or username"
+            },
+            "usernamePlaceholder": {
+              "en": "+1 555 5555 or @myName"
+            },
+            "passwordLabel": {
+              "en": "Apikey (not needed for Telegram)"
+            },
+            "passwordPlaceholder": {
+              "en": "See instructions at callmebot.com"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Receiver information"
+          },
+          "children": [
+            {
+              "id": "number",
+              "type": "label",
+              "label": {
+                "en": "Number"
+              },
+              "value": "",
+              "hint": "The number of the phone to receive messages (Signal and WhatsApp), or the username (Telegram and Facebook Messenger)"
+            },
+            {
+              "id": "apikey",
+              "type": "password",
+              "label": {
+                "en": "Api key"
+              },
+              "value": "",
+              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram does not need an api key."
+            }
+          ]
+        }
+      ],
+      "name": {
+        "en": "Facebook Messenger"
+      },
+      "id": "fb"
+    },
+    {
+      "class": "other",
+      "capabilities": [
+        "last_sent"
+      ],
+      "energy": {
+        "usageConstant": 0
+      },
+      "images": {
+        "small": "/drivers/signal/assets/images/small.jpg",
+        "large": "/drivers/signal/assets/images/large.jpg"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "Receiving phone number or username"
+            },
+            "usernamePlaceholder": {
+              "en": "+1 555 5555 or @myName"
+            },
+            "passwordLabel": {
+              "en": "Apikey (not needed for Telegram)"
+            },
+            "passwordPlaceholder": {
+              "en": "See instructions at callmebot.com"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Receiver information"
+          },
+          "children": [
+            {
+              "id": "number",
+              "type": "label",
+              "label": {
+                "en": "Number"
+              },
+              "value": "",
+              "hint": "The number of the phone to receive messages (Signal and WhatsApp), or the username (Telegram and Facebook Messenger)"
+            },
+            {
+              "id": "apikey",
+              "type": "password",
+              "label": {
+                "en": "Api key"
+              },
+              "value": "",
+              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram does not need an api key."
+            }
+          ]
+        }
+      ],
       "name": {
         "en": "Signal Messenger"
       },
-      "class": "other",
-      "capabilities": [],
-      "images": {
-        "small": "./drivers/signal/assets/images/small.jpg",
-        "large": "./drivers/signal/assets/images/large.jpg"
-      },
-      "pair": [
-        {
-          "id": "login_credentials",
-          "template": "login_credentials",
-          "options": {
-            "usernameLabel": {
-              "en": "Receiving phone number"
-            },
-            "usernamePlaceholder": {
-              "en": "+1 555 5555"
-            },
-            "passwordLabel": {
-              "en": "Apikey"
-            },
-            "passwordPlaceholder": {
-              "en": "See instructions at callmebot.com"
-            }
-          }
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          },
-          "options": {
-            "singular": true
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        }
-      ],
-      "settings": [
-        {
-          "type": "group",
-          "label": {
-            "en": "Receiver information"
-          },
-          "children": [
-            {
-              "id": "number",
-              "type": "label",
-              "label": {
-                "en": "Number"
-              },
-              "value": "",
-              "hint": "The number of the phone to receive messages"
-            },
-            {
-              "id": "apikey",
-              "type": "password",
-              "label": {
-                "en": "Api key"
-              },
-              "value": "",
-              "hint": "Add \"+34 603 21 25 97\" as new Contact in the receiving Phone. Name it \"Homey CallMeBot\". Send this message \"I allow callmebot to send me messages\" to the new Contact created (using Signal Messaging of course). The bot will answer you with your personal apikey"
-            }
-          ]
-        }
-      ],
       "id": "signal"
     },
     {
-      "name": {
-        "en": "WhatsApp"
-      },
       "class": "other",
-      "capabilities": [],
+      "capabilities": [
+        "last_sent"
+      ],
+      "energy": {
+        "usageConstant": 0
+      },
       "images": {
-        "small": "./drivers/whatsapp/assets/images/small.jpg",
-        "large": "./drivers/whatsapp/assets/images/large.jpg"
+        "small": "/drivers/telegram/assets/images/small.jpg",
+        "large": "/drivers/telegram/assets/images/large.jpg"
       },
       "pair": [
         {
@@ -192,13 +281,13 @@
           "template": "login_credentials",
           "options": {
             "usernameLabel": {
-              "en": "Receiving phone number"
+              "en": "Receiving phone number or username"
             },
             "usernamePlaceholder": {
-              "en": "+1 555 5555"
+              "en": "+1 555 5555 or @myName"
             },
             "passwordLabel": {
-              "en": "Apikey"
+              "en": "Apikey (not needed for Telegram)"
             },
             "passwordPlaceholder": {
               "en": "See instructions at callmebot.com"
@@ -234,7 +323,7 @@
                 "en": "Number"
               },
               "value": "",
-              "hint": "The number of the phone to receive messages"
+              "hint": "The number of the phone to receive messages (Signal and WhatsApp), or the username (Telegram and Facebook Messenger)"
             },
             {
               "id": "apikey",
@@ -243,12 +332,105 @@
                 "en": "Api key"
               },
               "value": "",
-              "hint": "Add \"+34 644 52 74 88\" as new Contact in the receiving Phone. Name it \"Homey CallMeBot\". Send this message \"I allow callmebot to send me messages\" to the new Contact created (using Whatsapp Messaging of course). The bot will answer you with your personal apikey (can take 2 minutes)"
+              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram does not need an api key."
             }
           ]
         }
       ],
+      "name": {
+        "en": "Telegram"
+      },
+      "id": "telegram"
+    },
+    {
+      "class": "other",
+      "capabilities": [
+        "last_sent"
+      ],
+      "energy": {
+        "usageConstant": 0
+      },
+      "images": {
+        "small": "/drivers/whatsapp/assets/images/small.jpg",
+        "large": "/drivers/whatsapp/assets/images/large.jpg"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "Receiving phone number or username"
+            },
+            "usernamePlaceholder": {
+              "en": "+1 555 5555 or @myName"
+            },
+            "passwordLabel": {
+              "en": "Apikey (not needed for Telegram)"
+            },
+            "passwordPlaceholder": {
+              "en": "See instructions at callmebot.com"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Receiver information"
+          },
+          "children": [
+            {
+              "id": "number",
+              "type": "label",
+              "label": {
+                "en": "Number"
+              },
+              "value": "",
+              "hint": "The number of the phone to receive messages (Signal and WhatsApp), or the username (Telegram and Facebook Messenger)"
+            },
+            {
+              "id": "apikey",
+              "type": "password",
+              "label": {
+                "en": "Api key"
+              },
+              "value": "",
+              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram does not need an api key."
+            }
+          ]
+        }
+      ],
+      "name": {
+        "en": "WhatsApp"
+      },
       "id": "whatsapp"
     }
-  ]
+  ],
+  "capabilities": {
+    "last_sent": {
+      "type": "string",
+      "title": {
+        "en": "Last sent"
+      },
+      "getable": true,
+      "setable": false,
+      "icon": "./assets/last_sent.svg"
+    }
+  }
 }

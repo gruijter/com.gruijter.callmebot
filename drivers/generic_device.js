@@ -63,9 +63,29 @@ class Device extends Homey.Device {
 		return this.onInit();
 	}
 
+	setCapability(capability, value) {
+		if (this.hasCapability(capability)) {
+			// only update changed values
+			if (value !== this.getCapabilityValue(capability)) {
+				this.setCapabilityValue(capability, value)
+					.catch((error) => {
+						this.log(error, capability, value);
+					});
+			}
+		}
+	}
+
+	updateLastSent() {
+		const ds = new Date();
+		const date = ds.toString().substring(4, 11);
+		const time = ds.toLocaleTimeString('nl-NL', { hour12: false, timeZone: this.homey.clock.getTimezone() }).substring(0, 5);
+		this.setCapability('last_sent', `${date} ${time}`);
+	}
+
 	async send(args) {
 		try {
 			const result = await this.driver.send(args);
+			this.updateLastSent();
 			this.log(result);
 		} catch (error) { this.error(error); }
 	}

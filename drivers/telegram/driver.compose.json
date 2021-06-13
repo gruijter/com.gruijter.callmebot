@@ -1,6 +1,6 @@
 {
   "name": {
-    "en": "Signal Messenger"
+    "en": "Telegram"
   },
   "$extends": ["driver_defaults"]
 }

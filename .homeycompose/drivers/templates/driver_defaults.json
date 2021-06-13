@@ -1,0 +1,67 @@
+{
+  "class": "other",
+  "capabilities": [
+     "last_sent"
+  ],
+  "energy": {
+		"usageConstant": 0
+  },
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.jpg",
+    "large": "{{driverAssetsPath}}/images/large.jpg"
+  },
+  "pair": [
+    {
+      "id": "login_credentials",
+      "template": "login_credentials",
+      "options": {
+        "usernameLabel": { "en": "Receiving phone number or username" },
+        "usernamePlaceholder": { "en": "+1 555 5555 or @myName" },
+        "passwordLabel": { "en": "Apikey (not needed for Telegram)" },
+        "passwordPlaceholder": { "en": "See instructions at callmebot.com" }
+      }
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      },
+      "options": {
+        "singular": true
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Receiver information"
+      },
+      "children": [
+        {
+          "id": "number",
+          "type": "label",
+          "label": {
+            "en": "Number"
+          },
+          "value": "",
+          "hint": "The number of the phone to receive messages (Signal and WhatsApp), or the username (Telegram and Facebook Messenger)"
+        },
+        {
+          "id": "apikey",
+          "type": "password",
+          "label": {
+            "en": "Api key"
+          },
+          "value": "",
+          "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram does not need an api key."
+        }
+      ]
+    }
+  ]
+}
