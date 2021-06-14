@@ -79,6 +79,40 @@ class Driver extends Homey.Driver {
 
 	}
 
+	// http://api.callmebot.com/start.php?user=@username&text=This+is+a+robot+calling+you+to+inform+you+about+something+urgent+that+is+happening&lang=en-GB-Standard-B&rpt=2
+	async sendVoice(args) {
+		try {
+			const query = {
+				user: args.device.settings.number,
+				text: args.msg,
+				lang: `${args.language}-Standard-${args.voice}`,
+				rpt: 2, // number to repeat msg
+			};
+			const headers = {
+				'Cache-Control': 'no-cache',
+			};
+			const options = {
+				hostname: 'api.callmebot.com',
+				path: `${this.ds.voicePath}?${qs.stringify(query).replace(/%2B/gi, '+')}`,
+				headers,
+				method: 'GET',
+			};
+			const result = await this._makeHttpsRequest(options, '');
+			if (result.statusCode !== 200) {
+				throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+			}
+
+			let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+			const telegramOK = result.body.includes('Call ended after');
+			if (telegramOK) strippedString = 'Call successfully ended';
+			if (!(telegramOK)) throw Error(strippedString);
+			return Promise.resolve(strippedString);
+		} catch (error) {
+			this.error(error);
+			return Promise.reject(error);
+		}
+	}
+
 	// https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
 	// https://api.callmebot.com/whatsapp.php?phone=[phone_number]&text=[message]&apikey=[your_apikey]
 	// https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&text=[message]

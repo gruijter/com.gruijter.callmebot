@@ -1,6 +1,6 @@
 {
   "name": {
-    "en": "Facebook Messenger"
+    "en": "FB Messenger"
   },
   "$extends": ["driver_defaults"]
 }

@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.gruijter.callmebot",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
@@ -101,6 +101,113 @@
             }
           }
         ]
+      },
+      {
+        "id": "send_voice",
+        "title": {
+          "en": "Send voice message"
+        },
+        "titleFormatted": {
+          "en": "Send voice message [[msg]] in [[language]] [[voice]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=telegram"
+          },
+          {
+            "name": "msg",
+            "type": "text",
+            "placeholder": {
+              "en": "Text"
+            }
+          },
+          {
+            "name": "language",
+            "type": "dropdown",
+            "title": {
+              "en": "Language"
+            },
+            "values": [
+              {
+                "id": "en-GB",
+                "label": {
+                  "en": "EN"
+                }
+              },
+              {
+                "id": "nl-NL",
+                "label": {
+                  "en": "NL"
+                }
+              },
+              {
+                "id": "de-DE",
+                "label": {
+                  "en": "DE"
+                }
+              },
+              {
+                "id": "it-IT",
+                "label": {
+                  "en": "IT"
+                }
+              },
+              {
+                "id": "fr-FR",
+                "label": {
+                  "en": "FR"
+                }
+              },
+              {
+                "id": "sv-SE",
+                "label": {
+                  "en": "SV"
+                }
+              },
+              {
+                "id": "nb-NO",
+                "label": {
+                  "en": "NB"
+                }
+              },
+              {
+                "id": "da-DK",
+                "label": {
+                  "en": "DA"
+                }
+              },
+              {
+                "id": "es-ES",
+                "label": {
+                  "en": "ES"
+                }
+              }
+            ]
+          },
+          {
+            "name": "voice",
+            "type": "dropdown",
+            "title": {
+              "en": "Voice"
+            },
+            "values": [
+              {
+                "id": "A",
+                "label": {
+                  "en": "Female"
+                }
+              },
+              {
+                "id": "B",
+                "label": {
+                  "en": "Male"
+                }
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -180,7 +287,7 @@
         }
       ],
       "name": {
-        "en": "Facebook Messenger"
+        "en": "FB Messenger"
       },
       "id": "fb"
     },
@@ -259,7 +366,7 @@
         }
       ],
       "name": {
-        "en": "Signal Messenger"
+        "en": "Signal"
       },
       "id": "signal"
     },

@@ -30,7 +30,10 @@ Add the Facebook device in Homey and fill in your user name and apikey. You can 
 
 Add the Telegram device in Homey and fill in your user name. No apikey is needed. You can now start sending messages from a flow.
 
-## Send Images and Voice
+## Send Voice Messages
+With Telegram you can start a voice call from a flow. The text will be converted to speech in a selection of languages. You can choose between a male and a female voice.
+
+## Send Images
 Work in progress
 
 ### Data privacy and terms of use

@@ -82,12 +82,27 @@ class Device extends Homey.Device {
 		this.setCapability('last_sent', `${date} ${time}`);
 	}
 
+	async sendVoice(args) {
+		try {
+			const now = Date.now();
+			if ((now - this.lastVoiceCall) < 65 * 1000) throw Error('Only one voicecall per minute allowed');
+			this.lastVoiceCall = now;
+			const result = await this.driver.sendVoice(args);
+			this.updateLastSent();
+			this.log(result);
+		} catch (error) {
+			this.error(error);
+		}
+	}
+
 	async send(args) {
 		try {
 			const result = await this.driver.send(args);
 			this.updateLastSent();
 			this.log(result);
-		} catch (error) { this.error(error); }
+		} catch (error) {
+			this.error(error);
+		}
 	}
 
 }

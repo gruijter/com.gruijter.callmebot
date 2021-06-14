@@ -4,5 +4,8 @@
   },
   "1.1.0": {
     "en": "Added FB Messenger. Added Telegram. Added device display - last sent date/time. New app image."
+  },
+  "1.2.0": {
+    "en": "Different icon per driver. Added Telegram voice calls."
   }
 }

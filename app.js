@@ -44,6 +44,8 @@ class MyApp extends Homey.App {
 		const send = this.homey.flow.getActionCard('send');
 		send.registerRunListener((args) => args.device.send(args, 'flow'));
 
+		const sendVoice = this.homey.flow.getActionCard('send_voice');
+		sendVoice.registerRunListener((args) => args.device.sendVoice(args, 'flow'));
 	}
 
 }

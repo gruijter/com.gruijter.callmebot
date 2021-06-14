@@ -24,7 +24,9 @@ const GenericDriver = require('../generic_driver.js');
 const driverSpecifics = {
 	driverId: 'telegram',
 	path: '/text.php',
+	voicePath: '/start.php',
 	// https://api.callmebot.com/text.php?user=[username]&text=[text]&html=[html_format]&links=[link_preview]
+	// http://api.callmebot.com/start.php?user=@username&text=This+is+a+robot+calling+you+to+inform+you+about+something+urgent+that+is+happening&lang=en-GB-Standard-B&rpt=2
 };
 
 class telegramDriver extends GenericDriver {
