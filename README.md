@@ -1,6 +1,6 @@
 # CallMeBot
 
-Have Homey send messeges to your own preferred messenger service. You can add multiple services and numbers for everyone in your family. It supports Whatsapp, Signal, Telegram and Facebook messenger.
+Have Homey send messages to your own preferred messenger service. You can add multiple services and numbers for everyone in your family. It supports Whatsapp, Signal, Telegram and Facebook messenger.
 You need to get a personal APIkey before using the API. Keep this key secret so only you can send messages to yourself!
 
 ## WhatsApp
