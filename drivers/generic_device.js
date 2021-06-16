@@ -21,9 +21,11 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 
 const Homey = require('homey');
 
-// const util = require('util');
+const fs = require('fs');
 
-// const setTimeoutPromise = util.promisify(setTimeout);
+const util = require('util');
+
+const setTimeoutPromise = util.promisify(setTimeout);
 
 class Device extends Homey.Device {
 
@@ -80,6 +82,41 @@ class Device extends Homey.Device {
 		const date = ds.toString().substring(4, 11);
 		const time = ds.toLocaleTimeString('nl-NL', { hour12: false, timeZone: this.homey.clock.getTimezone() }).substring(0, 5);
 		this.setCapability('last_sent', `${date} ${time}`);
+	}
+
+	async deleteFile(filename, delay) {
+		try {
+			await setTimeoutPromise(delay, 'waiting is done');
+			if (fs.existsSync(filename)) fs.unlinkSync(filename);
+			this.log('deleted', filename);
+		} catch (error) { this.error(error); }
+	}
+
+	async sendImage(args) {
+		try {
+			// get the contents of the image
+			const image = args.droptoken;
+			if (!image || !image.getStream) throw Error('No valid image');
+			const imgStream = await image.getStream();
+
+			// save the image
+			const { filename } = imgStream; // Date.now().toString() + '.img';
+			const targetFile = fs.createWriteStream(`./userdata/${filename}`);
+			imgStream.pipe(targetFile);
+
+			// delete the image after 1 minute delay
+			this.deleteFile(`./userdata/${filename}`, 60 * 1000);
+
+			// send the image
+			const args2 = args;
+			const cloudID = await this.homey.cloud.getHomeyId();
+			args2.imgUrl = `https://${cloudID}.connect.athom.com/app/com.gruijter.callmebot/userdata/${filename}`;
+			const result = await this.driver.sendImage(args2);
+			this.log(result);
+
+		} catch (error) {
+			this.error(error);
+		}
 	}
 
 	async sendVoice(args) {

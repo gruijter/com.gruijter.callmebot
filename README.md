@@ -25,16 +25,16 @@ Add the Signal device in Homey and fill in your phone number and apikey. You can
 Add the Facebook device in Homey and fill in your user name and apikey. You can now start sending messages from a flow.
 
 ## Telegram
-1) Use you Telegram to send /start to @CallMeBot_txtbot. Or click here: https://api2.callmebot.com/txt/login.php
+1) Use your Telegram to send /start to @CallMeBot_txtbot. Or click here: https://api2.callmebot.com/txt/login.php
 2) The bot will answer you with your personal apikey.
 
 Add the Telegram device in Homey and fill in your user name. No apikey is needed. You can now start sending messages from a flow.
 
 ## Send Voice Messages
-With Telegram you can start a voice call from a flow. The text will be converted to speech in a selection of languages. You can choose between a male and a female voice.
+With Telegram you can start a voice call from a flow. The text will be converted to speech in a selection of languages. You can choose between a male and a female voice. As one time setup you need to allow @CallMeBot_API4 to send you messages.
 
 ## Send Images
-Work in progress
+With Signal and FB messenger you can send images via a flow.
 
 ### Data privacy and terms of use
 https://www.callmebot.com/terms-of-service/

@@ -79,6 +79,46 @@ class Driver extends Homey.Driver {
 
 	}
 
+	// https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&image=[url_image]
+	// https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&image=[image_url]
+	async sendImage(args) {
+		try {
+			const { driverId } = args.device.driver.ds;
+			const query = {
+				image: args.imgUrl,
+			};
+			// if (driverId === 'telegram') query.user = args.device.settings.number;
+			if (driverId === 'signal' || driverId === 'whatsapp') {
+				query.phone = args.device.settings.number;
+			}
+			if (driverId === 'signal' || driverId === 'whatsapp' || driverId === 'fb') {
+				query.apikey = args.device.settings.apikey;
+			}
+			const headers = {
+				'Cache-Control': 'no-cache',
+			};
+			const options = {
+				hostname: 'api.callmebot.com',
+				path: `${this.ds.imagePath}?${qs.stringify(query).replace(/%2B/gi, '+')}`,
+				headers,
+				method: 'GET',
+			};
+			const result = await this._makeHttpsRequest(options, '');
+			if (result.statusCode !== 200) {
+				throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+			}
+			const strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+			const signalOK = result.body.includes('Image sent to');
+			const fbOK = result.body.includes('Message sent');
+
+			if (!(signalOK || fbOK)) throw Error(strippedString);
+			return Promise.resolve(strippedString);
+		} catch (error) {
+			this.error(error);
+			return Promise.reject(error);
+		}
+	}
+
 	// http://api.callmebot.com/start.php?user=@username&text=This+is+a+robot+calling+you+to+inform+you+about+something+urgent+that+is+happening&lang=en-GB-Standard-B&rpt=2
 	async sendVoice(args) {
 		try {

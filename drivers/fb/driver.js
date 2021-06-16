@@ -24,7 +24,9 @@ const GenericDriver = require('../generic_driver.js');
 const driverSpecifics = {
 	driverId: 'fb',
 	path: '/facebook/send.php',
+	imagePath: '/facebook/send.php',
 	// https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&text=[message]
+	// https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&image=[image_url]
 };
 
 class fbDriver extends GenericDriver {

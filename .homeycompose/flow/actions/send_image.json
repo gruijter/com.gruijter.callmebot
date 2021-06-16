@@ -1,0 +1,14 @@
+{
+    "id": "send_image",
+    "title": {
+      "en": "Send image"
+    },
+    "droptoken": "image",
+    "args": [
+        {
+          "type": "device",
+          "name": "device",
+          "filter": "driver_id=signal|fb"
+        }
+      ]
+  }

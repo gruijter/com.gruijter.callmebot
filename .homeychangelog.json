@@ -7,5 +7,8 @@
   },
   "1.2.0": {
     "en": "Different icon per driver. Added Telegram voice calls."
+  },
+  "1.3.0": {
+    "en": "Added send image (Signal and FB messenger)."
   }
 }
