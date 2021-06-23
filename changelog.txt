@@ -1,3 +1,4 @@
+v1.3.1  23.06.2021 Fix last sent for image sending.
 v1.3.0  16.06.2021 Added send image (Signal and FB messenger).
 v1.2.0  14.06.2021 Different icon per driver. Added Telegram voice calls.
 v1.1.0  13.06.2021 Added FB Messenger. Added Telegram. Added device display - last sent date/time. New app image.

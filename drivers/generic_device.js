@@ -112,6 +112,7 @@ class Device extends Homey.Device {
 			const cloudID = await this.homey.cloud.getHomeyId();
 			args2.imgUrl = `https://${cloudID}.connect.athom.com/app/com.gruijter.callmebot/userdata/${filename}`;
 			const result = await this.driver.sendImage(args2);
+			this.updateLastSent();
 			this.log(result);
 
 		} catch (error) {
