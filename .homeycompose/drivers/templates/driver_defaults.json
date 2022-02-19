@@ -17,7 +17,7 @@
       "options": {
         "usernameLabel": { "en": "Receiving phone number or username" },
         "usernamePlaceholder": { "en": "+1 555 5555 or @myName" },
-        "passwordLabel": { "en": "Apikey (not needed for Telegram)" },
+        "passwordLabel": { "en": "Apikey (for Telegram only required when sending to Groups)" },
         "passwordPlaceholder": { "en": "See instructions at callmebot.com" }
       }
     },
@@ -59,7 +59,7 @@
             "en": "Api key"
           },
           "value": "",
-          "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram does not need an api key."
+          "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram only needs an api key when sending to Groups."
         }
       ]
     }

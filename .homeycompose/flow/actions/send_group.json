@@ -1,15 +1,15 @@
 {
     "title": {
-      "en": "Send a message"
+      "en": "Send a group message"
     },
     "titleFormatted": {
-      "en": "Send message [[msg]]"
+      "en": "Send group message [[msg]]"
     },
     "args": [
       {
         "type": "device",
         "name": "device",
-        "filter": "driver_id=signal|whatsapp|fb|telegram"
+        "filter": "driver_id=telegram"
       },
       {
         "name": "msg",

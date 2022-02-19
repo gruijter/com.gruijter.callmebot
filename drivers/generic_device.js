@@ -1,5 +1,5 @@
 /*
-Copyright 2021, Robin de Gruijter (gruijter@hotmail.com)
+Copyright 2021 -2022, Robin de Gruijter (gruijter@hotmail.com)
 
 This file is part of com.gruijter.callmebot.
 
@@ -20,7 +20,6 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 'use strict';
 
 const Homey = require('homey');
-
 const fs = require('fs');
 
 const util = require('util');
@@ -94,29 +93,48 @@ class Device extends Homey.Device {
 
 	async sendImage(args) {
 		try {
+			// rate limit fb
+			const { driverId } = args.device.driver.ds;
+			if (driverId === 'fb') {
+				if ((Date.now() - this.lastFbImageSent) < 65000) throw Error('Only 1 image per minute allowed');
+				this.lastFbImageSent = Date.now();
+			}
+
 			// get the contents of the image
-			const image = args.droptoken;
+			const image = await args.droptoken;
 			if (!image || !image.getStream) throw Error('No valid image');
 			const imgStream = await image.getStream();
 
-			// save the image
-			const { filename } = imgStream; // Date.now().toString() + '.img';
-			const targetFile = fs.createWriteStream(`./userdata/${filename}`);
-			imgStream.pipe(targetFile);
+			// set filename for save on Homey
+			let { filename } = imgStream; // Date.now().toString() + '.img';
+			filename = `${Date.now().toString()}_${filename}`;
 
-			// delete the image after 1 minute delay
-			this.deleteFile(`./userdata/${filename}`, 60 * 1000);
+			// save the image and wait for finish
+			await new Promise((fulfill) => {
+				imgStream.on('finish', fulfill);
+				imgStream.on('close', fulfill);
+				imgStream.on('error', fulfill);
+				imgStream.on('unpipe', fulfill);
+				const targetFile = fs.createWriteStream(`./userdata/${filename}`);
+				imgStream.pipe(targetFile);
+			});
+
+			// delete the image after 30 seconds delay
+			this.deleteFile(`./userdata/${filename}`, 30 * 1000);
 
 			// send the image
-			const args2 = args;
+			// await setTimeoutPromise(5000, 'waiting is done');
+			const args2 = { ...args };
 			const cloudID = await this.homey.cloud.getHomeyId();
+			// args2.imgUrl = image.cloudUrl; // this is a cloudlink of the image. Image is updated on fetch by CallMeBot
 			args2.imgUrl = `https://${cloudID}.connect.athom.com/app/com.gruijter.callmebot/userdata/${filename}`;
 			const result = await this.driver.sendImage(args2);
 			this.updateLastSent();
 			this.log(result);
-
+			return Promise.resolve(true);
 		} catch (error) {
 			this.error(error);
+			return Promise.reject(error);
 		}
 	}
 
@@ -128,8 +146,10 @@ class Device extends Homey.Device {
 			const result = await this.driver.sendVoice(args);
 			this.updateLastSent();
 			this.log(result);
+			return Promise.resolve(true);
 		} catch (error) {
 			this.error(error);
+			return Promise.reject(error);
 		}
 	}
 
@@ -138,8 +158,22 @@ class Device extends Homey.Device {
 			const result = await this.driver.send(args);
 			this.updateLastSent();
 			this.log(result);
+			return Promise.resolve(true);
 		} catch (error) {
 			this.error(error);
+			return Promise.reject(error);
+		}
+	}
+
+	async sendGroup(args) {
+		try {
+			const result = await this.driver.sendGroup(args);
+			this.updateLastSent();
+			this.log(result);
+			return Promise.resolve(true);
+		} catch (error) {
+			this.error(error);
+			return Promise.reject(error);
 		}
 	}
 

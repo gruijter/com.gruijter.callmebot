@@ -1,3 +1,22 @@
+/*
+Copyright 2016 - 2022, Robin de Gruijter (gruijter@hotmail.com)
+
+This file is part of com.gruijter.callmebot.
+
+com.gruijter.callmebot is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+com.gruijter.callmebot is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with com.gruijter.callmebot.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 'use strict';
 
 const Homey = require('homey');
@@ -59,6 +78,9 @@ class MyApp extends Homey.App {
 		// action cards
 		const send = this.homey.flow.getActionCard('send');
 		send.registerRunListener((args) => args.device.send(args, 'flow'));
+
+		const sendGroup = this.homey.flow.getActionCard('send_group');
+		sendGroup.registerRunListener((args) => args.device.sendGroup(args, 'flow'));
 
 		const sendVoice = this.homey.flow.getActionCard('send_voice');
 		sendVoice.registerRunListener((args) => args.device.sendVoice(args, 'flow'));

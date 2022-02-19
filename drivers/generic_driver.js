@@ -1,5 +1,5 @@
 /*
-Copyright 2021, Robin de Gruijter (gruijter@hotmail.com)
+Copyright 2021 -2022, Robin de Gruijter (gruijter@hotmail.com)
 
 This file is part of com.gruijter.callmebot.
 
@@ -84,9 +84,7 @@ class Driver extends Homey.Driver {
 	async sendImage(args) {
 		try {
 			const { driverId } = args.device.driver.ds;
-			const query = {
-				image: args.imgUrl,
-			};
+			const query = {	};
 			// if (driverId === 'telegram') query.user = args.device.settings.number;
 			if (driverId === 'signal' || driverId === 'whatsapp') {
 				query.phone = args.device.settings.number;
@@ -94,12 +92,13 @@ class Driver extends Homey.Driver {
 			if (driverId === 'signal' || driverId === 'whatsapp' || driverId === 'fb') {
 				query.apikey = args.device.settings.apikey;
 			}
+			query.image = args.imgUrl;
 			const headers = {
-				'Cache-Control': 'no-cache',
+				// 'Cache-Control': 'no-cache',
 			};
 			const options = {
 				hostname: 'api.callmebot.com',
-				path: `${this.ds.imagePath}?${qs.stringify(query).replace(/%2B/gi, '+')}`,
+				path: `${this.ds.imagePath}?${qs.stringify(query).replace(/phone=%2B/gi, 'phone=+')}`,
 				headers,
 				method: 'GET',
 			};
@@ -114,7 +113,6 @@ class Driver extends Homey.Driver {
 			if (!(signalOK || fbOK)) throw Error(strippedString);
 			return Promise.resolve(strippedString);
 		} catch (error) {
-			this.error(error);
 			return Promise.reject(error);
 		}
 	}
@@ -148,7 +146,6 @@ class Driver extends Homey.Driver {
 			if (!(telegramOK)) throw Error(strippedString);
 			return Promise.resolve(strippedString);
 		} catch (error) {
-			this.error(error);
 			return Promise.reject(error);
 		}
 	}
@@ -196,7 +193,38 @@ class Driver extends Homey.Driver {
 			if (!(signalOK || whatsappOK || fbOK || telegramOK)) throw Error(strippedString);
 			return Promise.resolve(strippedString);
 		} catch (error) {
-			this.error(error);
+			return Promise.reject(error);
+		}
+	}
+
+	// https://api.callmebot.com/telegram/group.php?apikey=[apikey]&text=[text message]&html=[html_format]
+	async sendGroup(args) {
+		try {
+			const query = {
+				apikey: args.device.settings.apikey,
+				text: args.msg,
+				html: 'no',
+			};
+			const headers = {
+				// 'Cache-Control': 'no-cache',
+			};
+			const options = {
+				hostname: 'api.callmebot.com',
+				path: `${this.ds.path}?${qs.stringify(query)}`,
+				headers,
+				method: 'GET',
+			};
+			const result = await this._makeHttpsRequest(options, '');
+			if (result.statusCode !== 200) {
+				throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+			}
+			// console.log(result.body);
+			let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+			const telegramOK = result.body.includes('Status: Successful');
+			if (telegramOK) strippedString = 'Status: Successful';
+			if (!telegramOK) throw Error(strippedString);
+			return Promise.resolve(strippedString);
+		} catch (error) {
 			return Promise.reject(error);
 		}
 	}

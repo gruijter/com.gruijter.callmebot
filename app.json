@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.gruijter.callmebot",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
@@ -80,7 +80,6 @@
   "flow": {
     "actions": [
       {
-        "id": "send",
         "title": {
           "en": "Send a message"
         },
@@ -100,10 +99,33 @@
               "en": "Text"
             }
           }
-        ]
+        ],
+        "id": "send"
       },
       {
-        "id": "send_image",
+        "title": {
+          "en": "Send a group message"
+        },
+        "titleFormatted": {
+          "en": "Send group message [[msg]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=telegram"
+          },
+          {
+            "name": "msg",
+            "type": "text",
+            "placeholder": {
+              "en": "Text"
+            }
+          }
+        ],
+        "id": "send_group"
+      },
+      {
         "title": {
           "en": "Send image"
         },
@@ -114,10 +136,10 @@
             "name": "device",
             "filter": "driver_id=signal|fb"
           }
-        ]
+        ],
+        "id": "send_image"
       },
       {
-        "id": "send_voice",
         "title": {
           "en": "Send voice message"
         },
@@ -197,6 +219,18 @@
                 "label": {
                   "en": "ES"
                 }
+              },
+              {
+                "id": "pl-PL",
+                "label": {
+                  "en": "PL"
+                }
+              },
+              {
+                "id": "ru-RU",
+                "label": {
+                  "en": "RU"
+                }
               }
             ]
           },
@@ -221,7 +255,8 @@
               }
             ]
           }
-        ]
+        ],
+        "id": "send_voice"
       }
     ]
   },
@@ -250,7 +285,7 @@
               "en": "+1 555 5555 or @myName"
             },
             "passwordLabel": {
-              "en": "Apikey (not needed for Telegram)"
+              "en": "Apikey (for Telegram only required when sending to Groups)"
             },
             "passwordPlaceholder": {
               "en": "See instructions at callmebot.com"
@@ -295,7 +330,7 @@
                 "en": "Api key"
               },
               "value": "",
-              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram does not need an api key."
+              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram only needs an api key when sending to Groups."
             }
           ]
         }
@@ -329,7 +364,7 @@
               "en": "+1 555 5555 or @myName"
             },
             "passwordLabel": {
-              "en": "Apikey (not needed for Telegram)"
+              "en": "Apikey (for Telegram only required when sending to Groups)"
             },
             "passwordPlaceholder": {
               "en": "See instructions at callmebot.com"
@@ -374,7 +409,7 @@
                 "en": "Api key"
               },
               "value": "",
-              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram does not need an api key."
+              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram only needs an api key when sending to Groups."
             }
           ]
         }
@@ -408,7 +443,7 @@
               "en": "+1 555 5555 or @myName"
             },
             "passwordLabel": {
-              "en": "Apikey (not needed for Telegram)"
+              "en": "Apikey (for Telegram only required when sending to Groups)"
             },
             "passwordPlaceholder": {
               "en": "See instructions at callmebot.com"
@@ -453,7 +488,7 @@
                 "en": "Api key"
               },
               "value": "",
-              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram does not need an api key."
+              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram only needs an api key when sending to Groups."
             }
           ]
         }
@@ -487,7 +522,7 @@
               "en": "+1 555 5555 or @myName"
             },
             "passwordLabel": {
-              "en": "Apikey (not needed for Telegram)"
+              "en": "Apikey (for Telegram only required when sending to Groups)"
             },
             "passwordPlaceholder": {
               "en": "See instructions at callmebot.com"
@@ -532,7 +567,7 @@
                 "en": "Api key"
               },
               "value": "",
-              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram does not need an api key."
+              "hint": "See app settings or callmebot.com for instructions how to get an api key. Telegram only needs an api key when sending to Groups."
             }
           ]
         }

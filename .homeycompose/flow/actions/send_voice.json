@@ -1,5 +1,4 @@
 {
-    "id": "send_voice",
     "title": {
       "en": "Send voice message"
     },
@@ -34,7 +33,9 @@
           { "id": "sv-SE", "label": { "en": "SV" } },
           { "id": "nb-NO", "label": { "en": "NB" } },
           { "id": "da-DK", "label": { "en": "DA" } },
-          { "id": "es-ES", "label": { "en": "ES" } }
+          { "id": "es-ES", "label": { "en": "ES" } },
+          { "id": "pl-PL", "label": { "en": "PL" } },
+          { "id": "ru-RU", "label": { "en": "RU" } }
         ]
       },
       {
