@@ -34,7 +34,7 @@ class captureLogs {
 		this.logArray = [];
 		this.captureStdOut();
 		this.captureStdErr();
-		this.readLogs();
+		this.readLogs().catch(() => []);
 	}
 
 	readLogs() {

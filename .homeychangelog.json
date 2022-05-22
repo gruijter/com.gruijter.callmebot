@@ -16,5 +16,8 @@
   },
   "1.4.0": {
     "en": "Updated README instructions. Added Russian and Polish voice message. Improved image sending. Rate limit check for FB image sending. Error feedback in flow. Added group message to Telegram (UNTESTED)."
+  },
+  "1.4.1": {
+    "en": "Fix app crash during startup. Telegram group sending is broken?"
   }
 }

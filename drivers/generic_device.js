@@ -60,8 +60,8 @@ class Device extends Homey.Device {
 	async onSettings() { // { newSettings }) {
 		this.log(`${this.getName()} device settings changed by user`);
 		// do callback to confirm settings change
-		Promise.resolve(true); // string can be returned to user
-		return this.onInit();
+		this.onInit();
+		return Promise.resolve('settings are saved'); // string can be returned to user
 	}
 
 	setCapability(capability, value) {

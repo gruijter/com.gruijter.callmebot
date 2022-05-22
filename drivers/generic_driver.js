@@ -202,15 +202,15 @@ class Driver extends Homey.Driver {
 		try {
 			const query = {
 				apikey: args.device.settings.apikey,
+				// html: 'no',
 				text: args.msg,
-				html: 'no',
 			};
 			const headers = {
 				// 'Cache-Control': 'no-cache',
 			};
 			const options = {
 				hostname: 'api.callmebot.com',
-				path: `${this.ds.path}?${qs.stringify(query)}`,
+				path: `${this.ds.groupPath}?${qs.stringify(query)}`,
 				headers,
 				method: 'GET',
 			};

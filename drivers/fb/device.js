@@ -19,7 +19,7 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 
 'use strict';
 
-const GenericDevice = require('../generic_device.js');
+const GenericDevice = require('../generic_device');
 
 const deviceSpecifics = {
 };

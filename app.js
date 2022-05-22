@@ -22,7 +22,7 @@ along with com.gruijter.callmebot.  If not, see <http://www.gnu.org/licenses/>.
 const Homey = require('homey');
 const fs = require('fs');
 
-const Logger = require('./captureLogs.js');
+const Logger = require('./captureLogs');
 
 class MyApp extends Homey.App {
 
