@@ -19,5 +19,11 @@
   },
   "1.4.1": {
     "en": "Fix app crash during startup. Telegram group sending is broken?"
+  },
+  "1.5.0": {
+    "en": "Fix for HomeyPro 2023."
+  },
+  "1.5.1": {
+    "en": "Fix adding new devices for HomeyPro 2023."
   }
 }

@@ -1,5 +1,5 @@
 /*
-Copyright 2021 -2022, Robin de Gruijter (gruijter@hotmail.com)
+Copyright 2021 -2023, Robin de Gruijter (gruijter@hotmail.com)
 
 This file is part of com.gruijter.callmebot.
 
@@ -115,12 +115,12 @@ class Device extends Homey.Device {
 				imgStream.on('close', fulfill);
 				imgStream.on('error', fulfill);
 				imgStream.on('unpipe', fulfill);
-				const targetFile = fs.createWriteStream(`./userdata/${filename}`);
+				const targetFile = fs.createWriteStream(`/userdata/${filename}`);
 				imgStream.pipe(targetFile);
 			});
 
 			// delete the image after 30 seconds delay
-			this.deleteFile(`./userdata/${filename}`, 30 * 1000);
+			this.deleteFile(`/userdata/${filename}`, 30 * 1000);
 
 			// send the image
 			// await setTimeoutPromise(5000, 'waiting is done');

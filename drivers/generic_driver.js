@@ -1,5 +1,5 @@
 /*
-Copyright 2021 -2022, Robin de Gruijter (gruijter@hotmail.com)
+Copyright 2021 -2023, Robin de Gruijter (gruijter@hotmail.com)
 
 This file is part of com.gruijter.callmebot.
 
@@ -70,7 +70,7 @@ class Driver extends Homey.Driver {
 					},
 					capabilities: ['last_sent'],
 				};
-				return device;
+				return [device];
 			});
 
 		} catch (error) {
@@ -177,7 +177,6 @@ class Driver extends Homey.Driver {
 				headers,
 				method: 'GET',
 			};
-
 			const result = await this._makeHttpsRequest(options, '');
 			if (result.statusCode !== 200) {
 				throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
@@ -189,7 +188,6 @@ class Driver extends Homey.Driver {
 			const fbOK = result.body.includes('Message sent');
 			const telegramOK = result.body.includes('Status: Successful');
 			if (telegramOK) strippedString = 'Status: Successful';
-
 			if (!(signalOK || whatsappOK || fbOK || telegramOK)) throw Error(strippedString);
 			return Promise.resolve(strippedString);
 		} catch (error) {

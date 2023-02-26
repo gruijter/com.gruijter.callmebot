@@ -1,5 +1,5 @@
 /*
-Copyright 2016 - 2022, Robin de Gruijter (gruijter@hotmail.com)
+Copyright 2016 - 2023, Robin de Gruijter (gruijter@hotmail.com)
 
 This file is part of com.gruijter.callmebot.
 
@@ -62,11 +62,11 @@ class MyApp extends Homey.App {
 	// init stuff
 	deleteAllImageFiles() {
 		try {
-			const files = fs.readdirSync('./userdata');
+			const files = fs.readdirSync('/userdata');
 			files.forEach((file) => {
 				if (file !== ('log.json')) {
 					this.log('deleting', file);
-					fs.unlinkSync(`./userdata/${file}`);
+					fs.unlinkSync(`/userdata/${file}`);
 				}
 			});
 			this.log('Deleted all image files');

@@ -1,3 +1,5 @@
+v1.5.1  26.02.2023 Fix adding new devices for HomeyPro 2023.
+v1.5.0  25.02.2023 Fix for HomeyPro 2023.
 v1.4.1  22.05.2022 Fix app crash during startup. Telegram group sending is broken?
 v1.4.0  19.02.2022 Updated README instructions. Added Russian and Polish voice message. Improved image sending. Rate limit check for FB image sending. Error feedback in flow. Added group message to Telegram (UNTESTED).
 v1.3.0  16.06.2021 Added send image (Signal and FB messenger).

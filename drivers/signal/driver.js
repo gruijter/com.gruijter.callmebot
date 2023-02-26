@@ -1,5 +1,5 @@
 /*
-Copyright 2021 -2022, Robin de Gruijter (gruijter@hotmail.com)
+Copyright 2021 -2023, Robin de Gruijter (gruijter@hotmail.com)
 
 This file is part of com.gruijter.callmebot.
 
@@ -19,7 +19,7 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 
 'use strict';
 
-const GenericDriver = require('../generic_driver.js');
+const GenericDriver = require('../generic_driver');
 
 const driverSpecifics = {
 	driverId: 'signal',
