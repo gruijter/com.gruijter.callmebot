@@ -20,7 +20,6 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 'use strict';
 
 const Homey = require('homey');
-const qs = require('querystring');
 
 class Driver extends Homey.Driver {
 
@@ -97,7 +96,7 @@ class Driver extends Homey.Driver {
 			};
 			const options = {
 				hostname: 'api.callmebot.com',
-				path: `${this.ds.imagePath}?${qs.stringify(query).replace(/phone=%2B/gi, 'phone=+')}`,
+				path: `${this.ds.imagePath}?${new URLSearchParams(query).toString().replace(/phone=%2B/gi, 'phone=+')}`,
 				headers,
 				method: 'GET',
 			};
@@ -130,7 +129,7 @@ class Driver extends Homey.Driver {
 			};
 			const options = {
 				hostname: 'api.callmebot.com',
-				path: `${this.ds.voicePath}?${qs.stringify(query).replace(/%2B/gi, '+')}`,
+				path: `${this.ds.voicePath}?${new URLSearchParams(query).toString().replace(/%2B/gi, '+')}`,
 				headers,
 				method: 'GET',
 			};
@@ -172,7 +171,7 @@ class Driver extends Homey.Driver {
 			};
 			const options = {
 				hostname: 'api.callmebot.com',
-				path: `${this.ds.path}?${qs.stringify(query).replace(/%2B/gi, '+')}`,
+				path: `${this.ds.path}?${new URLSearchParams(query).toString().replace(/%2B/gi, '+')}`,
 				headers,
 				method: 'GET',
 			};
@@ -207,7 +206,7 @@ class Driver extends Homey.Driver {
 			};
 			const options = {
 				hostname: 'api.callmebot.com',
-				path: `${this.ds.groupPath}?${qs.stringify(query)}`,
+				path: `${this.ds.groupPath}?${new URLSearchParams(query).toString()}`,
 				headers,
 				method: 'GET',
 			};
