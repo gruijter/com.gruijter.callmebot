@@ -79,133 +79,136 @@ class Driver extends Homey.Driver {
 
   // https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&image=[url_image]
   // https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&image=[image_url]
-  	async sendImage(args) {
-  		const { driverId } = args.device.driver.ds;
-  		const query = {	};
-  		// if (driverId === 'telegram') query.user = args.device.settings.number;
-  		if (driverId === 'signal' || driverId === 'whatsapp') {
-  			query.phone = args.device.settings.number;
-  		}
-  		if (driverId === 'signal' || driverId === 'whatsapp' || driverId === 'fb') {
-  			query.apikey = args.device.settings.apikey;
-  		}
-  		query.image = args.imgUrl;
-  		const headers = {
-  			// 'Cache-Control': 'no-cache',
-  		};
-  		const options = {
-  			hostname: 'api.callmebot.com',
-  			path: `${this.ds.imagePath}?${new URLSearchParams(query).toString().replace(/phone=%2B/gi, 'phone=+')}`,
-  			headers,
-  			method: 'GET',
-  		};
-  		const result = await this._makeHttpsRequest(options, '');
-  		if (result.statusCode !== 200) {
-  			throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
-  		}
-  		const strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-  		const signalOK = result.body.includes('Image sent to');
-  		const fbOK = result.body.includes('Message sent');
-  
-  		if (!(signalOK || fbOK)) throw Error(strippedString);
-  		return strippedString;
-  	}
+  async sendImage(args) {
+    const { driverId } = args.device.driver.ds;
+    const query = {};
+    // if (driverId === 'telegram') query.user = args.device.settings.number;
+    if (driverId === 'signal' || driverId === 'whatsapp') {
+      query.phone = args.device.settings.number;
+    }
+    if (driverId === 'signal' || driverId === 'whatsapp' || driverId === 'fb') {
+      query.apikey = args.device.settings.apikey;
+    }
+    query.image = args.imgUrl;
+    const headers = {
+      // 'Cache-Control': 'no-cache',
+    };
+    const options = {
+      hostname: 'api.callmebot.com',
+      path: `${this.ds.imagePath}?${new URLSearchParams(query).toString().replace(/phone=%2B/gi, 'phone=+')}`,
+      headers,
+      method: 'GET',
+    };
+    const result = await this._makeHttpsRequest(options, '');
+    if (result.statusCode !== 200) {
+      throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+    }
+    const strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    const signalOK = result.body.includes('Image sent to');
+    const fbOK = result.body.includes('Message sent');
+
+    if (!(signalOK || fbOK)) throw Error(strippedString);
+    return strippedString;
+  }
 
   // http://api.callmebot.com/start.php?user=@username&text=This+is+a+robot+calling+you+to+inform+you+about+something+urgent+that+is+happening&lang=en-GB-Standard-B&rpt=2
-  	async sendVoice(args) {
-  		const query = {
-  			user: args.device.settings.number,
-  			text: args.msg,
-  			lang: `${args.language}-Standard-${args.voice}`,
-  			rpt: 2, // number to repeat msg
-  		};
-  		const headers = {
-  			'Cache-Control': 'no-cache',
-  		};
-  		const options = {
-  			hostname: 'api.callmebot.com',
-  			path: `${this.ds.voicePath}?${new URLSearchParams(query).toString().replace(/%2B/gi, '+')}`,
-  			headers,
-  			method: 'GET',
-  		};
-  		const result = await this._makeHttpsRequest(options, '');
-  		if (result.statusCode !== 200) {
-  			throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
-  		}
-  
-  		let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-  		const telegramOK = result.body.includes('Call ended after');
-  		if (telegramOK) strippedString = 'Call successfully ended';
-  		if (!(telegramOK)) throw Error(strippedString);
-  		return strippedString;
-  	}
+  async sendVoice(args) {
+    const query = {
+      user: args.device.settings.number,
+      text: args.msg,
+      lang: `${args.language}-Standard-${args.voice}`,
+      rpt: 2, // number to repeat msg
+    };
+    const headers = {
+      'Cache-Control': 'no-cache',
+    };
+    const options = {
+      hostname: 'api.callmebot.com',
+      path: `${this.ds.voicePath}?${new URLSearchParams(query).toString().replace(/%2B/gi, '+')}`,
+      headers,
+      method: 'GET',
+    };
+    const result = await this._makeHttpsRequest(options, '');
+    if (result.statusCode !== 200) {
+      throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+    }
+
+    let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    const telegramOK = result.body.includes('Call ended after');
+    if (telegramOK) strippedString = 'Call successfully ended';
+    if (!(telegramOK)) throw Error(strippedString);
+    return strippedString;
+  }
   // https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
   // https://api.callmebot.com/whatsapp.php?phone=[phone_number]&text=[message]&apikey=[your_apikey]
   // https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&text=[message]
   // https://api.callmebot.com/text.php?user=[username]&text=[text]&html=[html_format]&links=[link_preview]
-  	async send(args) {
-  		const { driverId } = args.device.driver.ds;
-  		const query = {
-  			text: args.msg,
-  		};
-  		if (driverId === 'telegram') query.user = args.device.settings.number;
-  		if (driverId === 'signal' || driverId === 'whatsapp') {
-  			query.phone = args.device.settings.number;
-  		}
-  		if (driverId === 'signal' || driverId === 'whatsapp' || driverId === 'fb') {
-  			query.apikey = args.device.settings.apikey;
-  		}
-  
-  		const headers = {
-  			'Cache-Control': 'no-cache',
-  		};
-  		const options = {
-  			hostname: 'api.callmebot.com',
-  			path: `${this.ds.path}?${new URLSearchParams(query).toString().replace(/%2B/gi, '+')}`,
-  			headers,
-  			method: 'GET',
-  		};
-  		const result = await this._makeHttpsRequest(options, '');
-  		if (result.statusCode !== 200) {
-  			throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
-  		}
-  
-  		let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-  		const signalOK = result.body.includes('Message sent to');
-  		const whatsappOK = result.body.includes('Message queued');
-  		const fbOK = result.body.includes('Message sent');
-  		const telegramOK = result.body.includes('Status: Successful');
-  		if (telegramOK) strippedString = 'Status: Successful';
-  		if (!(signalOK || whatsappOK || fbOK || telegramOK)) throw Error(strippedString);
-  		return strippedString;
-  	}
+
+  async send(args) {
+    const { driverId } = args.device.driver.ds;
+    const query = {
+      text: args.msg,
+    };
+    if (driverId === 'telegram') query.user = args.device.settings.number;
+    if (driverId === 'signal' || driverId === 'whatsapp') {
+      query.phone = args.device.settings.number;
+    }
+    if (driverId === 'signal' || driverId === 'whatsapp' || driverId === 'fb') {
+      query.apikey = args.device.settings.apikey;
+    }
+
+    const headers = {
+      'Cache-Control': 'no-cache',
+    };
+    const options = {
+      hostname: 'api.callmebot.com',
+      path: `${this.ds.path}?${new URLSearchParams(query).toString().replace(/%2B/gi, '+')}`,
+      headers,
+      method: 'GET',
+    };
+    const result = await this._makeHttpsRequest(options, '');
+    if (result.statusCode !== 200) {
+      throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+    }
+
+    let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    const signalOK = result.body.includes('Message sent to');
+    const whatsappOK = result.body.includes('Message queued');
+    const fbOK = result.body.includes('Message sent');
+    const telegramOK = result.body.includes('Status: Successful');
+    if (telegramOK) strippedString = 'Status: Successful';
+    if (!(signalOK || whatsappOK || fbOK || telegramOK)) throw Error(strippedString);
+    return strippedString;
+  }
   // https://api.callmebot.com/telegram/group.php?apikey=[apikey]&text=[text message]&html=[html_format]
-  	async sendGroup(args) {
-  		const query = {
-  			apikey: args.device.settings.apikey,
-  			// html: 'no',
-  			text: args.msg,
-  		};
-  		const headers = {
-  			// 'Cache-Control': 'no-cache',
-  		};
-  		const options = {
-  			hostname: 'api.callmebot.com',
-  			path: `${this.ds.groupPath}?${new URLSearchParams(query).toString()}`,
-  			headers,
-  			method: 'GET',
-  		};
-  		const result = await this._makeHttpsRequest(options, '');
-  		if (result.statusCode !== 200) {
-  			throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
-  		}
-  		// console.log(result.body);
-  		let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-  		const telegramOK = result.body.includes('Status: Successful');
-  		if (telegramOK) strippedString = 'Status: Successful';
-  		if (!telegramOK) throw Error(strippedString);
-  		return strippedString;
-  	}
+
+  async sendGroup(args) {
+    const query = {
+      apikey: args.device.settings.apikey,
+      // html: 'no',
+      text: args.msg,
+    };
+    const headers = {
+      // 'Cache-Control': 'no-cache',
+    };
+    const options = {
+      hostname: 'api.callmebot.com',
+      path: `${this.ds.groupPath}?${new URLSearchParams(query).toString()}`,
+      headers,
+      method: 'GET',
+    };
+    const result = await this._makeHttpsRequest(options, '');
+    if (result.statusCode !== 200) {
+      throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+    }
+    // console.log(result.body);
+    let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    const telegramOK = result.body.includes('Status: Successful');
+    if (telegramOK) strippedString = 'Status: Successful';
+    if (!telegramOK) throw Error(strippedString);
+    return strippedString;
+  }
+
   async _makeHttpsRequest(options, postData, timeout) {
     const url = `https://${options.hostname}${options.path}`;
     const signal = AbortSignal.timeout(timeout || 30000);

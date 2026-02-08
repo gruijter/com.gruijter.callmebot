@@ -29,12 +29,12 @@ class MyApp extends Homey.App {
   onInit() {
     if (!this.logger) this.logger = new Logger({ name: 'log', length: 200, homey: this.homey });
     this.log('CallMeBot app is running!');
-    
+
     this.homey
-      .on('unload', async () => {
+      .on('unload', () => {
         this.log('app unload called');
         // save logs to persistant storage
-        await this.logger.saveLogs();
+        this.logger.saveLogs().catch(this.error);
       })
       .on('memwarn', () => {
         this.log('memwarn!');
@@ -64,7 +64,9 @@ class MyApp extends Homey.App {
         }
       }
       this.log('Deleted all image files');
-    } catch (error) { this.error(error); }
+    } catch (error) {
+      this.error(error);
+    }
   }
 
   // ==============FLOW CARD STUFF======================================

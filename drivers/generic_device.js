@@ -60,7 +60,7 @@ class Device extends Homey.Device {
   async onSettings() { // { newSettings }) {
     this.log(`${this.getName()} device settings changed by user`);
     // do callback to confirm settings change
-    this.onInit();
+    this.onInit().catch(this.error);
     return Promise.resolve('settings are saved'); // string can be returned to user
   }
 
@@ -86,9 +86,13 @@ class Device extends Homey.Device {
   async deleteFile(filename, delay) {
     try {
       await setTimeoutPromise(delay, 'waiting is done');
-      if (fs.existsSync(filename)) fs.unlinkSync(filename);
+      if (fs.existsSync(filename)) {
+        fs.unlinkSync(filename);
+      }
       this.log('deleted', filename);
-    } catch (error) { this.error(error); }
+    } catch (error) {
+      this.error(error);
+    }
   }
 
   async sendImage(args) {
@@ -120,7 +124,7 @@ class Device extends Homey.Device {
       });
 
       // delete the image after 30 seconds delay
-      this.deleteFile(`/userdata/${filename}`, 30 * 1000);
+      this.deleteFile(`/userdata/${filename}`, 30 * 1000).catch(this.error);
 
       // send the image
       // await setTimeoutPromise(5000, 'waiting is done');
