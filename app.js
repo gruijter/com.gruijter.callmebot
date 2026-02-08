@@ -29,13 +29,7 @@ class MyApp extends Homey.App {
   onInit() {
     if (!this.logger) this.logger = new Logger({ name: 'log', length: 200, homey: this.homey });
     this.log('CallMeBot app is running!');
-    // register some listeners
-    process.on('unhandledRejection', (error) => {
-      this.error('unhandledRejection! ', error.message);
-    });
-    process.on('uncaughtException', (error) => {
-      this.error('uncaughtException! ', error);
-    });
+    
     this.homey
       .on('unload', async () => {
         this.log('app unload called');
