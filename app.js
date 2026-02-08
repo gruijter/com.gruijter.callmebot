@@ -20,7 +20,7 @@ along with com.gruijter.callmebot.  If not, see <http://www.gnu.org/licenses/>.
 'use strict';
 
 const Homey = require('homey');
-const fs = require('fs');
+const fs = require('fs').promises;
 
 const Logger = require('./captureLogs');
 
@@ -46,7 +46,7 @@ class MyApp extends Homey.App {
         this.log('memwarn!');
       });
 
-    this.deleteAllImageFiles();
+    this.deleteAllImageFiles().catch(this.error);
     this.registerFlowListeners();
   }
 
@@ -60,15 +60,15 @@ class MyApp extends Homey.App {
   }
 
   // init stuff
-  deleteAllImageFiles() {
+  async deleteAllImageFiles() {
     try {
-      const files = fs.readdirSync('/userdata');
-      files.forEach((file) => {
-        if (file !== ('log.json')) {
+      const files = await fs.readdir('/userdata');
+      for (const file of files) {
+        if (file !== 'log.json') {
           this.log('deleting', file);
-          fs.unlinkSync(`/userdata/${file}`);
+          await fs.unlink(`/userdata/${file}`);
         }
-      });
+      }
       this.log('Deleted all image files');
     } catch (error) { this.error(error); }
   }
