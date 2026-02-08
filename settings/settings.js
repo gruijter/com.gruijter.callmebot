@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
+let Homey;
+
 // tab 2 stuff here
 function displayLogs(lines) {
 	$('#loglines').html(lines);
