@@ -22,19 +22,19 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 const GenericDriver = require('../generic_driver');
 
 const driverSpecifics = {
-	driverId: 'fb',
-	path: '/facebook/send.php',
-	imagePath: '/facebook/send.php',
-	// https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&text=[message]
-	// https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&image=[image_url]
+  driverId: 'fb',
+  path: '/facebook/send.php',
+  imagePath: '/facebook/send.php',
+  // https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&text=[message]
+  // https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&image=[image_url]
 };
 
 class fbDriver extends GenericDriver {
-	onInit() {
-		// this.log('driver onInit');
-		this.ds = driverSpecifics;
-		this.onDriverInit();
-	}
+  onInit() {
+    // this.log('driver onInit');
+    this.ds = driverSpecifics;
+    this.onDriverInit().catch(this.error);
+  }
 }
 
 module.exports = fbDriver;

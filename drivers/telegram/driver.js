@@ -22,20 +22,20 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 const GenericDriver = require('../generic_driver');
 
 const driverSpecifics = {
-	driverId: 'telegram',
-	path: '/text.php',
-	voicePath: '/start.php',
-	groupPath: '/telegram/group.php',
-	// https://api.callmebot.com/text.php?user=[username]&text=[text]&html=[html_format]&links=[link_preview]
-	// http://api.callmebot.com/start.php?user=@username&text=This+is+a+robot+calling+you+to+inform+you+about+something+urgent+that+is+happening&lang=en-GB-Standard-B&rpt=2
+  driverId: 'telegram',
+  path: '/text.php',
+  voicePath: '/start.php',
+  groupPath: '/telegram/group.php',
+  // https://api.callmebot.com/text.php?user=[username]&text=[text]&html=[html_format]&links=[link_preview]
+  // http://api.callmebot.com/start.php?user=@username&text=This+is+a+robot+calling+you+to+inform+you+about+something+urgent+that+is+happening&lang=en-GB-Standard-B&rpt=2
 };
 
 class telegramDriver extends GenericDriver {
-	onInit() {
-		// this.log('driver onInit');
-		this.ds = driverSpecifics;
-		this.onDriverInit();
-	}
+  onInit() {
+    // this.log('driver onInit');
+    this.ds = driverSpecifics;
+    this.onDriverInit().catch(this.error);
+  }
 }
 
 module.exports = telegramDriver;

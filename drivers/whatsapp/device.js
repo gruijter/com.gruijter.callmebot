@@ -26,10 +26,10 @@ const deviceSpecifics = {
 
 class whatsappDevice extends GenericDevice {
 
-	onInit() {
-		this.ds = deviceSpecifics;
-		this.onInitDevice();
-	}
+  onInit() {
+    this.ds = deviceSpecifics;
+    this.onInitDevice().catch(this.error);
+  }
 
 }
 

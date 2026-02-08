@@ -22,19 +22,19 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 const GenericDriver = require('../generic_driver');
 
 const driverSpecifics = {
-	driverId: 'signal',
-	path: '/signal/send.php',
-	imagePath: '/signal/send.php',
-	// https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
-	// https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&image=[url_image]
+  driverId: 'signal',
+  path: '/signal/send.php',
+  imagePath: '/signal/send.php',
+  // https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
+  // https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&image=[url_image]
 };
 
 class signalDriver extends GenericDriver {
-	onInit() {
-		// this.log('driver onInit');
-		this.ds = driverSpecifics;
-		this.onDriverInit();
-	}
+  onInit() {
+    // this.log('driver onInit');
+    this.ds = driverSpecifics;
+    this.onDriverInit().catch(this.error);
+  }
 }
 
 module.exports = signalDriver;

@@ -22,17 +22,17 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 const GenericDriver = require('../generic_driver');
 
 const driverSpecifics = {
-	driverId: 'whatsapp',
-	path: '/whatsapp.php',
-	// https://api.callmebot.com/whatsapp.php?phone=[phone_number]&text=[message]&apikey=[your_apikey]
+  driverId: 'whatsapp',
+  path: '/whatsapp.php',
+  // https://api.callmebot.com/whatsapp.php?phone=[phone_number]&text=[message]&apikey=[your_apikey]
 };
 
 class WhatsAppDriver extends GenericDriver {
-	onInit() {
-		// this.log('driver onInit');
-		this.ds = driverSpecifics;
-		this.onDriverInit();
-	}
+  onInit() {
+    // this.log('driver onInit');
+    this.ds = driverSpecifics;
+    this.onDriverInit().catch(this.error);
+  }
 }
 
 module.exports = WhatsAppDriver;
