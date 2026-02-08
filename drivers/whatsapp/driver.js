@@ -27,7 +27,7 @@ const driverSpecifics = {
 	// https://api.callmebot.com/whatsapp.php?phone=[phone_number]&text=[message]&apikey=[your_apikey]
 };
 
-class signalDriver extends GenericDriver {
+class WhatsAppDriver extends GenericDriver {
 	onInit() {
 		// this.log('driver onInit');
 		this.ds = driverSpecifics;
@@ -35,4 +35,4 @@ class signalDriver extends GenericDriver {
 	}
 }
 
-module.exports = signalDriver;
+module.exports = WhatsAppDriver;

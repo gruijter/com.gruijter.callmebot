@@ -9,8 +9,8 @@ function displayLogs(lines) {
 function updateLogs() {
 	try {
 		displayLogs('');
-		Homey.api('GET', 'getlogs/', null, (err, result) => {
-			if (!err) {
+		Homey.api('GET', 'getlogs/', null)
+			.then((result) => {
 				let lines = '';
 				result
 					.reverse()
@@ -23,10 +23,10 @@ function updateLogs() {
 						lines += `${logLine}<br />`;
 					});
 				displayLogs(lines);
-			} else {
+			})
+			.catch((err) => {
 				displayLogs(err);
-			}
-		});
+			});
 	} catch (e) {
 		displayLogs(e);
 	}
@@ -35,14 +35,14 @@ function updateLogs() {
 function deleteLogs() {
 	Homey.confirm(Homey.__('settings.tab2.deleteWarning'), 'warning', (error, result) => {
 		if (result) {
-			Homey.api('GET', 'deletelogs/', null, (err) => {
-				if (err) {
-					Homey.alert(err.message, 'error'); // [, String icon], Function callback )
-				} else {
+			Homey.api('GET', 'deletelogs/', null)
+				.then(() => {
 					Homey.alert(Homey.__('settings.tab2.deleted'), 'info');
 					updateLogs();
-				}
-			});
+				})
+				.catch((err) => {
+					Homey.alert(err.message, 'error');
+				});
 		}
 	});
 }
