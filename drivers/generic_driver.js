@@ -20,7 +20,6 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 'use strict';
 
 const Homey = require('homey');
-const https = require('https');
 const qs = require('querystring');
 
 class Driver extends Homey.Driver {
@@ -227,35 +226,26 @@ class Driver extends Homey.Driver {
 		}
 	}
 
-	_makeHttpsRequest(options, postData, timeout) {
-		return new Promise((resolve, reject) => {
-			const opts = options;
-			opts.timeout = timeout || 30000;
-			const req = https.request(opts, (res) => {
-				let resBody = '';
-				res.on('data', (chunk) => {
-					resBody += chunk;
-				});
-				res.once('end', () => {
-					if (!res.complete) {
-						this.error('The connection was terminated while the message was still being sent');
-						return reject(Error('The connection was terminated while the message was still being sent'));
-					}
-					res.body = resBody;
-					return resolve(res); // resolve the request
-				});
+	async _makeHttpsRequest(options, postData, timeout) {
+		const url = `https://${options.hostname}${options.path}`;
+		const signal = AbortSignal.timeout(timeout || 30000);
+
+		try {
+			const response = await fetch(url, {
+				method: options.method,
+				headers: options.headers,
+				body: postData || undefined,
+				signal,
 			});
-			req.on('error', (e) => {
-				req.destroy();
-				this.error(e);
-				return reject(e);
-			});
-			req.on('timeout', () => {
-				req.destroy();
-			});
-			// req.write(postData);
-			req.end(postData);
-		});
+			const body = await response.text();
+			return {
+				statusCode: response.status,
+				body,
+			};
+		} catch (error) {
+			this.error(error);
+			throw error;
+		}
 	}
 }
 

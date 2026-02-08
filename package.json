@@ -1,15 +1,17 @@
 {
   "name": "com.gruijter.callmebot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "app.js",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "build": "tsc"
+    "lint": "eslint --ext .js,.ts --ignore-path .gitignore ."
   },
   "devDependencies": {
-    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.1.0"
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
+    "eslint": "^7.32.0",
+    "eslint-config-athom": "^3.1.5"
   },
   "dependencies": {
     "fixture-stdout": "^0.2.1"
