@@ -3,11 +3,9 @@
 
 'use strict';
 
-let Homey;
-
 // tab 2 stuff here
 function displayLogs(lines) {
-  $('#loglines').html(lines);
+  document.getElementById('loglines').innerHTML = lines;
 }
 
 function updateLogs() {
@@ -24,7 +22,7 @@ function updateLogs() {
               .replace(' [ManagerDrivers]', '')
               .replace(/\[Device:(.*?)\]/, '[dev]')
               .replace(/\[Driver:(.*?)\]/, '[$1]');
-            lines += `${logLine}<br />`;
+            lines += `${logLine}\n`;
           });
         displayLogs(lines);
       })
@@ -53,17 +51,29 @@ function deleteLogs() {
 
 // generic stuff here
 function showTab(tab) {
+  document.querySelectorAll('.tab').forEach((el) => {
+    el.classList.remove('tab-active');
+    el.classList.add('tab-inactive');
+  });
+  const activeTab = document.getElementById(`tabb${tab}`);
+  if (activeTab) {
+    activeTab.classList.remove('tab-inactive');
+    activeTab.classList.add('tab-active');
+  }
+  document.querySelectorAll('.panel').forEach((el) => {
+    el.style.display = 'none';
+  });
+  const activePanel = document.getElementById(`tab${tab}`);
+  if (activePanel) {
+    activePanel.style.display = 'block';
+  }
   if (tab === 2) updateLogs();
-  $('.tab').removeClass('tab-active');
-  $('.tab').addClass('tab-inactive');
-  $(`#tabb${tab}`).removeClass('tab-inactive');
-  $(`#tabb${tab}`).addClass('active');
-  $('.panel').hide();
-  $(`#tab${tab}`).show();
 }
 
 function onHomeyReady(homeyReady) {
-  Homey = homeyReady;
-  showTab(1);
-  Homey.ready();
+  window.Homey = homeyReady;
+  homeyReady.ready();
+  setTimeout(() => {
+    showTab(1);
+  }, 50);
 }

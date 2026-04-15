@@ -1,127 +1,113 @@
 <!doctype html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="styles.css" />
 		<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
-		<script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
 		<script type="text/javascript" src="settings.js" data-origin="settings"></script>
 		<style>
 			body {
 				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 				color: #333;
+				margin: 0;
+				padding: 15px;
 			}
-			.benefit {
-				font-size: 1.1em;
-				font-weight: 500;
-				color: #666;
-				margin-bottom: 20px;
+			h2 {
+				font-weight: 600;
+				margin-top: 0;
 			}
-			.tabs-container {
+			.tabs {
 				display: flex;
-				gap: 10px;
-				border-bottom: 2px solid #f0f0f0;
+				border-bottom: 2px solid #eaeaea;
 				margin-bottom: 20px;
+				gap: 5px;
 			}
 			.tab {
-				padding: 10px 20px;
+				padding: 10px 15px;
 				cursor: pointer;
-				font-weight: 600;
-				color: #888;
 				border-bottom: 2px solid transparent;
-				margin-bottom: -2px;
-				transition: all 0.3s ease;
+				margin-bottom: -1px;
+				font-weight: 500;
+				color: #888;
+				transition: all 0.2s ease;
 			}
 			.tab:hover {
 				color: #333;
 			}
-			.tab:not(.tab-inactive) {
-				color: #f0a846; /* Homey App Brand Color */
-				border-bottom-color: #f0a846;
-			}
-			fieldset.listContainer {
-				border: 1px solid #e0e0e0;
-				border-radius: 8px;
-				padding: 20px;
-				background: #fafafa;
-				box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-			}
-			legend {
-				font-weight: 600;
-				color: #444;
-				padding: 0 10px;
-				background: #fafafa;
-				border-radius: 4px;
+			.tab-active {
+				color: #000;
+				border-bottom-color: #007aff;
 			}
 			.instructions {
-				line-height: 1.6;
+				font-size: 13px;
 				color: #555;
-			}
-			.setting {
-				display: flex;
-				align-items: center;
-				gap: 15px;
-				margin-bottom: 20px;
-			}
-			.settings-item-description {
-				font-weight: 600;
-				color: #444;
-			}
-			.btn {
-				background-color: #f0a846;
-				color: white;
-				border: none;
-				border-radius: 6px;
-				padding: 8px 16px;
-				cursor: pointer;
-				font-size: 14px;
-				font-weight: 600;
-				transition: background-color 0.2s;
-			}
-			.btn:hover {
-				background-color: #d9963e;
-			}
-			#loglines {
-				margin-top: 10px;
-				background: #1e1e1e;
-				color: #d4d4d4;
+				background: #f4f6f8;
 				padding: 15px;
 				border-radius: 8px;
-				font-family: "Consolas", "Courier New", monospace;
-				font-size: 13px;
+				margin-bottom: 20px;
+				line-height: 1.6;
+				border: 1px solid #e1e4e8;
+			}
+			.panel-buttons {
+				display: flex;
+				gap: 15px;
+				margin-top: 10px;
+				margin-bottom: 30px;
+			}
+			.panel-buttons button {
+				flex: 1;
+				padding: 12px;
+				border: none;
+				border-radius: 8px;
+				font-size: 14px;
+				font-weight: 600;
+				cursor: pointer;
+				transition: opacity 0.2s ease, transform 0.1s ease;
+			}
+			.panel-buttons button:active {
+				transform: scale(0.98);
+			}
+			button.danger {
+				background: #ff3b30;
+				color: #fff;
+			}
+			button:hover {
+				opacity: 0.9;
+			}
+			#loglines {
+				font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+				font-size: 12px;
+				background: #282c34;
+				color: #abb2bf;
+				padding: 15px;
+				border-radius: 10px;
 				max-height: 400px;
 				overflow-y: auto;
 				white-space: pre-wrap;
-				box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+				word-break: break-all;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="app">
-			<p data-i18n="settings.benefit" class="benefit">Send messages via a flow</p>
-			<div class="tabs-container">
+			<h2 data-i18n="settings.benefit" style="margin: 15px 0;">Let Homey send messages to your phone</h2>
+			
+			<div class="tabs">
 				<div id="tabb1" class="tab tab-inactive" onclick="showTab(1)" data-i18n="settings.tab1.title">Settings</div>
 				<div id="tabb2" class="tab tab-inactive" onclick="showTab(2)" data-i18n="settings.tab2.title">Log</div>
 			</div>
-			<div class="tab-content">
 
 				<!-- Instructions panel -->
 				<div id="tab1" class="panel" style="display: none;">
-					<fieldset class="listContainer">
-						<legend data-i18n="settings.tab1.instructionsTitle">Instructions</legend>
-						<p data-i18n="settings.tab1.instructions" class="instructions">Instructions</p>
-					</fieldset>				
+				<p data-i18n="settings.tab1.instructions" class="instructions">Instructions</p>
 				</div>
 
 				<!-- Logging panel -->
-				<div id="tab2" class="panel">
-					<div class="setting">
-						<label class="settings-item-description" data-i18n="settings.tab2.deleteLogs">Delete</label>
-						<button id="deleteButton" class="btn" onclick="deleteLogs()" data-i18n="settings.tab2.deleteLogs">Delete</button>
+			<div id="tab2" class="panel" style="display: none;">
+				<div class="panel-buttons" style="margin-top: 0; margin-bottom: 15px;">
+					<button id="deleteButton" class="danger" onclick="deleteLogs()" data-i18n="settings.tab2.deleteLogs">Delete Logs</button>
 					</div>
 					<div id="loglines"></div>
 				</div>
 
-			</div>
 		</div>
 	</body>
 </html>
