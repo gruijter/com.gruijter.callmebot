@@ -13,21 +13,21 @@ Add the WhatsApp device in Homey and fill in your phone number and apikey. You c
 ## Signal
 1) Add the phone number +34 603 21 25 97 into your Phone Contacts. Name it "Homey CallMeBot Signal".
 2) Send this message "I allow callmebot to send me messages" to the new Contact created (using your Signal Messaging of course)
-3) The bot will answer you with your personal apikey.
+3) The bot will answer you with your personal apikey and a phone ID.
 
-Add the Signal device in Homey and fill in your phone number and apikey. You can now start sending messages from a flow.
+Add the Signal device in Homey and fill in your phone ID (provided by the bot, do not use your actual phone number) and apikey. You can now start sending messages from a flow.
 
 ## Facebook messenger
 1) Start a Facebook Messenger conversation with @api.callmebot. Or click here: https://m.me/api.callmebot
 2) Send this message "create apikey" to @api.callmebot (using your Facebook Messenger of course)
 3) The bot will answer you with your personal apikey.
 
-Add the Facebook device in Homey and fill in your user name and apikey. You can now start sending messages from a flow.
+Add the Facebook device in Homey and fill in your apikey. The username field required during setup is not used for Facebook and can be filled with any text. You can now start sending messages from a flow.
 
 ## Telegram
 1) Use your Telegram to send /start to @CallMeBot_txtbot. Or click here: https://api2.callmebot.com/txt/login.php
 
-Add the Telegram device in Homey and fill in your user name (e.g. @myusername or +331234567890). No apikey is needed. You can now start sending messages from a flow.
+Add the Telegram device in Homey and fill in your user name (e.g. @myusername or +331234567890). The apikey field required during setup is not used for personal messages and can be left empty or filled with any text. You can now start sending messages from a flow.
 
 ## Send Voice Messages
 With Telegram you can start a voice call from a flow. The text will be converted to speech in a selection of languages. You can choose between a male and a female voice. As one time setup you need to allow @CallMeBot_API4 to send you messages.

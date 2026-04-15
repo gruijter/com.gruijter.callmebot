@@ -4,7 +4,7 @@
       "tab1": {
         "title": "Settings",
         "instructionsTitle": "Instructions",
-        "instructions": "Add a receiving phone via Homey Devices. You can choose from a number of messaging services. Go to callmebot.com for instructions how to get a free apikey. Enter the apikey in the login screen, together with the receiving phone number. Now you can start sending text messages from a flow."
+        "instructions": "Add a receiving phone via Homey Devices. You can choose from a number of messaging services. Go to callmebot.com for instructions how to get a free apikey. Enter the apikey in the login screen, together with the receiving phone number (or Phone ID for Signal). Now you can start sending text messages from a flow."
       },
       "tab2": {
         "title": "Logs",
