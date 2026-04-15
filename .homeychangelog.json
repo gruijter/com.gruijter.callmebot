@@ -25,5 +25,8 @@
   },
   "1.5.1": {
     "en": "Fix adding new devices for HomeyPro 2023."
+  },
+  "2.0.0": {
+    "en": "Complete app rewrite. Updated README. Added all translations. Many fixes and stability improvements."
   }
 }
