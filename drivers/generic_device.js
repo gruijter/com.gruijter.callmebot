@@ -22,10 +22,7 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 const Homey = require('homey');
 const fs = require('fs'); // for createWriteStream
 const fsPromises = require('fs').promises;
-
-const util = require('util');
-
-const setTimeoutPromise = util.promisify(setTimeout);
+const { pipeline } = require('stream/promises');
 
 class Device extends Homey.Device {
 
@@ -126,7 +123,6 @@ class Device extends Homey.Device {
         tempImagePath = `/userdata/${filename}`;
 
         // Save the image stream to a temporary file using a robust pipeline.
-        const { pipeline } = require('stream/promises');
         await pipeline(imgStream, fs.createWriteStream(tempImagePath));
         this.log('Image saved to', tempImagePath);
 
