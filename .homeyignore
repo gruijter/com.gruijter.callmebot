@@ -1,0 +1,7 @@
+roadmap*.txt
+templog*.txt
+zzz*
+*.OLD.js
+.vscode
+.github
+

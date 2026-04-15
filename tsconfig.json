@@ -2,14 +2,5 @@
   "compilerOptions": {
     "allowJs": true,
     "outDir": ".homeybuild/"
-  },
-  "include": [
-    "**/*.js",
-    "**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    ".homeybuild",
-    "**/zzz_*"
-  ]
+  }
 }
