@@ -9,7 +9,8 @@
       "sv": "Skicka röstmeddelande",
       "no": "Send talemelding",
       "da": "Send talebesked",
-      "ru": "Отправить голосовое сообщение"
+      "ru": "Отправить голосовое сообщение",
+      "pl": "Wyślij wiadomość głosową"
     },
     "titleFormatted": {
       "en": "Send voice message [[msg]] in [[language]] [[voice]]",
@@ -21,7 +22,8 @@
       "sv": "Skicka röstmeddelande [[msg]] på [[language]] [[voice]]",
       "no": "Send talemelding [[msg]] på [[language]] [[voice]]",
       "da": "Send talebesked [[msg]] på [[language]] [[voice]]",
-      "ru": "Отправить голосовое сообщение [[msg]] на [[language]] [[voice]]"
+      "ru": "Отправить голосовое сообщение [[msg]] на [[language]] [[voice]]",
+      "pl": "Wyślij wiadomość głosową [[msg]] w [[language]] [[voice]]"
     },
     "args": [
       {
@@ -42,7 +44,8 @@
           "sv": "Text",
           "no": "Tekst",
           "da": "Tekst",
-          "ru": "Текст"
+          "ru": "Текст",
+          "pl": "Tekst"
         }
       },
       {
@@ -58,7 +61,8 @@
           "sv": "Språk",
           "no": "Språk",
           "da": "Sprog",
-          "ru": "Язык"
+          "ru": "Язык",
+          "pl": "Język"
         },
         "values": [
           { "id": "en-GB", "label": { "en": "EN" } },
@@ -87,11 +91,12 @@
           "sv": "Röst",
           "no": "Stemme",
           "da": "Stemme",
-          "ru": "Голос"
+          "ru": "Голос",
+          "pl": "Głos"
         },
         "values": [
-          { "id": "A", "label": { "en": "Female", "nl": "Vrouw", "de": "Weiblich", "fr": "Femme", "es": "Femenina", "it": "Femminile", "sv": "Kvinna", "no": "Kvinne", "da": "Kvinde", "ru": "Женский" } },
-          { "id": "B", "label": { "en": "Male", "nl": "Man", "de": "Männlich", "fr": "Homme", "es": "Masculino", "it": "Maschile", "sv": "Man", "no": "Mann", "da": "Mand", "ru": "Мужской" } }
+          { "id": "A", "label": { "en": "Female", "nl": "Vrouw", "de": "Weiblich", "fr": "Femme", "es": "Femenina", "it": "Femminile", "sv": "Kvinna", "no": "Kvinne", "da": "Kvinde", "ru": "Женский", "pl": "Kobieta" } },
+          { "id": "B", "label": { "en": "Male", "nl": "Man", "de": "Männlich", "fr": "Homme", "es": "Masculino", "it": "Maschile", "sv": "Man", "no": "Mann", "da": "Mand", "ru": "Мужской", "pl": "Mężczyzna" } }
         ]
       }
     ]

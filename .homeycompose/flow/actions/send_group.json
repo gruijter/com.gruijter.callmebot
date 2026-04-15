@@ -9,7 +9,8 @@
       "sv": "Skicka ett gruppmeddelande",
       "no": "Send en gruppemelding",
       "da": "Send en gruppebesked",
-      "ru": "Отправить групповое сообщение"
+      "ru": "Отправить групповое сообщение",
+      "pl": "Wyślij wiadomość grupową"
     },
     "titleFormatted": {
       "en": "Send group message [[msg]]",
@@ -21,7 +22,8 @@
       "sv": "Skicka gruppmeddelande [[msg]]",
       "no": "Send gruppemelding [[msg]]",
       "da": "Send gruppebesked [[msg]]",
-      "ru": "Отправить групповое сообщение [[msg]]"
+      "ru": "Отправить групповое сообщение [[msg]]",
+      "pl": "Wyślij wiadomość grupową [[msg]]"
     },
     "args": [
       {
@@ -42,7 +44,8 @@
           "sv": "Text",
           "no": "Tekst",
           "da": "Tekst",
-          "ru": "Текст"
+          "ru": "Текст",
+          "pl": "Tekst"
         }
       }
     ]

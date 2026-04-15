@@ -9,7 +9,8 @@
       "sv": "Skicka ett meddelande",
       "no": "Send en melding",
       "da": "Send en besked",
-      "ru": "Отправить сообщение"
+      "ru": "Отправить сообщение",
+      "pl": "Wyślij wiadomość"
     },
     "titleFormatted": {
       "en": "Send message [[msg]]",
@@ -21,7 +22,8 @@
       "sv": "Skicka meddelande [[msg]]",
       "no": "Send melding [[msg]]",
       "da": "Send besked [[msg]]",
-      "ru": "Отправить сообщение [[msg]]"
+      "ru": "Отправить сообщение [[msg]]",
+      "pl": "Wyślij wiadomość [[msg]]"
     },
     "args": [
       {
@@ -42,7 +44,8 @@
           "sv": "Text",
           "no": "Tekst",
           "da": "Tekst",
-          "ru": "Текст"
+          "ru": "Текст",
+          "pl": "Tekst"
         }
       }
     ]

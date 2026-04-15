@@ -9,7 +9,8 @@
       "sv": "Skicka bild",
       "no": "Send bilde",
       "da": "Send billede",
-      "ru": "Отправить изображение"
+      "ru": "Отправить изображение",
+      "pl": "Wyślij obraz"
     },
     "droptoken": "image",
     "args": [
