@@ -70,7 +70,7 @@ class Device extends Homey.Device {
       if (value !== this.getCapabilityValue(capability)) {
         this.setCapabilityValue(capability, value)
           .catch((error) => {
-            this.log(error, capability, value);
+            this.error(error, capability, value);
           });
       }
     }
@@ -110,8 +110,7 @@ class Device extends Homey.Device {
       const imgStream = await image.getStream();
 
       // set filename for save on Homey
-      let { filename } = imgStream; // Date.now().toString() + '.img';
-      filename = `${Date.now().toString()}_${filename}`;
+      const filename = `${Date.now()}_${imgStream.filename || 'image.jpg'}`;
 
       // save the image and wait for finish
       await new Promise((fulfill) => {
@@ -135,10 +134,10 @@ class Device extends Homey.Device {
       const result = await this.driver.sendImage(args2);
       this.updateLastSent();
       this.log(result);
-      return Promise.resolve(true);
+      return true;
     } catch (error) {
       this.error(error);
-      return Promise.reject(error);
+      throw error;
     }
   }
 
@@ -150,10 +149,10 @@ class Device extends Homey.Device {
       const result = await this.driver.sendVoice(args);
       this.updateLastSent();
       this.log(result);
-      return Promise.resolve(true);
+      return true;
     } catch (error) {
       this.error(error);
-      return Promise.reject(error);
+      throw error;
     }
   }
 
@@ -162,10 +161,10 @@ class Device extends Homey.Device {
       const result = await this.driver.send(args);
       this.updateLastSent();
       this.log(result);
-      return Promise.resolve(true);
+      return true;
     } catch (error) {
       this.error(error);
-      return Promise.reject(error);
+      throw error;
     }
   }
 
@@ -174,10 +173,10 @@ class Device extends Homey.Device {
       const result = await this.driver.sendGroup(args);
       this.updateLastSent();
       this.log(result);
-      return Promise.resolve(true);
+      return true;
     } catch (error) {
       this.error(error);
-      return Promise.reject(error);
+      throw error;
     }
   }
 

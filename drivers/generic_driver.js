@@ -101,13 +101,13 @@ class Driver extends Homey.Driver {
     };
     const result = await this._makeHttpsRequest(options, '');
     if (result.statusCode !== 200) {
-      throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+      throw new Error(`${result.statusCode}: ${result.body.slice(0, 250)}`);
     }
     const strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
     const signalOK = result.body.includes('Image sent to');
     const fbOK = result.body.includes('Message sent');
 
-    if (!(signalOK || fbOK)) throw Error(strippedString);
+    if (!(signalOK || fbOK)) throw new Error(strippedString);
     return strippedString;
   }
 
@@ -130,13 +130,13 @@ class Driver extends Homey.Driver {
     };
     const result = await this._makeHttpsRequest(options, '');
     if (result.statusCode !== 200) {
-      throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+      throw new Error(`${result.statusCode}: ${result.body.slice(0, 250)}`);
     }
 
     let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
     const telegramOK = result.body.includes('Call ended after');
     if (telegramOK) strippedString = 'Call successfully ended';
-    if (!(telegramOK)) throw Error(strippedString);
+    if (!telegramOK) throw new Error(strippedString);
     return strippedString;
   }
   // https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
@@ -168,7 +168,7 @@ class Driver extends Homey.Driver {
     };
     const result = await this._makeHttpsRequest(options, '');
     if (result.statusCode !== 200) {
-      throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+      throw new Error(`${result.statusCode}: ${result.body.slice(0, 250)}`);
     }
 
     let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -177,7 +177,7 @@ class Driver extends Homey.Driver {
     const fbOK = result.body.includes('Message sent');
     const telegramOK = result.body.includes('Status: Successful');
     if (telegramOK) strippedString = 'Status: Successful';
-    if (!(signalOK || whatsappOK || fbOK || telegramOK)) throw Error(strippedString);
+    if (!(signalOK || whatsappOK || fbOK || telegramOK)) throw new Error(strippedString);
     return strippedString;
   }
   // https://api.callmebot.com/telegram/group.php?apikey=[apikey]&text=[text message]&html=[html_format]
@@ -199,13 +199,12 @@ class Driver extends Homey.Driver {
     };
     const result = await this._makeHttpsRequest(options, '');
     if (result.statusCode !== 200) {
-      throw Error(`${result.statusCode}: ${result.body.substr(0, 250)}`);
+      throw new Error(`${result.statusCode}: ${result.body.slice(0, 250)}`);
     }
-    // console.log(result.body);
     let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
     const telegramOK = result.body.includes('Status: Successful');
     if (telegramOK) strippedString = 'Status: Successful';
-    if (!telegramOK) throw Error(strippedString);
+    if (!telegramOK) throw new Error(strippedString);
     return strippedString;
   }
 
