@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "benefit": "Laat Homey berichten naar je telefoon sturen",
+    "tab1": {
+      "title": "Instellingen",
+      "instructionsTitle": "Instructies",
+      "instructions": "Voeg een ontvangende telefoon toe via Homey Apparaten. Je kunt kiezen uit een aantal berichtendiensten. Ga naar callmebot.com voor instructies om een gratis apikey te krijgen. Vul de apikey in het inlogscherm in, samen met het ontvangende telefoonnummer (of Phone ID voor Signal). Nu kun je beginnen met het verzenden van tekstberichten vanuit een flow."
+    },
+    "tab2": {
+      "title": "Logboek",
+      "deleteLogs": "Verwijder logboek",
+      "deleteWarning": "Weet je het zeker?",
+      "deleted": "Logboek verwijderd"
+    }
+  }
+}

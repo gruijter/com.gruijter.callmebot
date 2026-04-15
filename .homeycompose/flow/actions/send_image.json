@@ -1,6 +1,15 @@
 {
     "title": {
-      "en": "Send image"
+      "en": "Send image",
+      "nl": "Stuur afbeelding",
+      "de": "Sende Bild",
+      "fr": "Envoyer une image",
+      "es": "Enviar imagen",
+      "it": "Invia immagine",
+      "sv": "Skicka bild",
+      "no": "Send bilde",
+      "da": "Send billede",
+      "ru": "Отправить изображение"
     },
     "droptoken": "image",
     "args": [

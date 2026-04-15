@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "benefit": "Lad Homey sende beskeder til din telefon",
+    "tab1": {
+      "title": "Indstillinger",
+      "instructionsTitle": "Instruktioner",
+      "instructions": "Tilføj en modtagende telefon via Homey Enheder. Du kan vælge mellem en række beskedtjenester. Gå til callmebot.com for instruktioner om, hvordan du får en gratis apikey. Indtast apikey på login-skærmen sammen med det modtagende telefonnummer (eller telefon-ID for Signal). Nu kan du begynde at sende tekstbeskeder fra et flow."
+    },
+    "tab2": {
+      "title": "Logfiler",
+      "deleteLogs": "Slet logfiler",
+      "deleteWarning": "Er du sikker?",
+      "deleted": "Logfiler slettet"
+    }
+  }
+}

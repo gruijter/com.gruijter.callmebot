@@ -1,9 +1,27 @@
 {
     "title": {
-      "en": "Send a group message"
+      "en": "Send a group message",
+      "nl": "Stuur een groepsbericht",
+      "de": "Sende eine Gruppennachricht",
+      "fr": "Envoyer un message de groupe",
+      "es": "Enviar un mensaje de grupo",
+      "it": "Invia un messaggio di gruppo",
+      "sv": "Skicka ett gruppmeddelande",
+      "no": "Send en gruppemelding",
+      "da": "Send en gruppebesked",
+      "ru": "Отправить групповое сообщение"
     },
     "titleFormatted": {
-      "en": "Send group message [[msg]]"
+      "en": "Send group message [[msg]]",
+      "nl": "Stuur groepsbericht [[msg]]",
+      "de": "Sende Gruppennachricht [[msg]]",
+      "fr": "Envoyer le message de groupe [[msg]]",
+      "es": "Enviar mensaje de grupo [[msg]]",
+      "it": "Invia messaggio di gruppo [[msg]]",
+      "sv": "Skicka gruppmeddelande [[msg]]",
+      "no": "Send gruppemelding [[msg]]",
+      "da": "Send gruppebesked [[msg]]",
+      "ru": "Отправить групповое сообщение [[msg]]"
     },
     "args": [
       {
@@ -15,7 +33,16 @@
         "name": "msg",
         "type": "text",
         "placeholder": {
-          "en": "Text"
+          "en": "Text",
+          "nl": "Tekst",
+          "de": "Text",
+          "fr": "Texte",
+          "es": "Texto",
+          "it": "Testo",
+          "sv": "Text",
+          "no": "Tekst",
+          "da": "Tekst",
+          "ru": "Текст"
         }
       }
     ]

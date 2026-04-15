@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "benefit": "Låt Homey skicka meddelanden till din telefon",
+    "tab1": {
+      "title": "Inställningar",
+      "instructionsTitle": "Instruktioner",
+      "instructions": "Lägg till en mottagande telefon via Homey Enheter. Du kan välja bland ett antal meddelandetjänster. Gå till callmebot.com för instruktioner om hur man får en gratis apikey. Ange apikey på inloggningsskärmen, tillsammans med det mottagande telefonnumret (eller telefon-ID för Signal). Nu kan du börja skicka textmeddelanden från ett flow."
+    },
+    "tab2": {
+      "title": "Loggar",
+      "deleteLogs": "Radera loggar",
+      "deleteWarning": "Är du säker?",
+      "deleted": "Loggar raderade"
+    }
+  }
+}

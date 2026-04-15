@@ -8,7 +8,17 @@
   },
   "brandColor": "#f0a846",
   "description": {
-    "en": "Send messages to your Whatsapp, Signal, Telegram and Facebook messenger"
+    "en": "Send messages to your Whatsapp, Signal, Telegram and Facebook messenger",
+    "nl": "Stuur berichten naar je Whatsapp, Signal, Telegram en Facebook messenger",
+    "de": "Senden Sie Nachrichten an Ihren WhatsApp, Signal, Telegram und Facebook Messenger",
+    "fr": "Envoyez des messages à votre messagerie Whatsapp, Signal, Telegram et Facebook",
+    "es": "Envía mensajes a tu Whatsapp, Signal, Telegram y Facebook messenger",
+    "it": "Invia messaggi al tuo Whatsapp, Signal, Telegram e Facebook messenger",
+    "sv": "Skicka meddelanden till din Whatsapp, Signal, Telegram och Facebook messenger",
+    "nb": "Send meldinger til din Whatsapp, Signal, Telegram og Facebook messenger",
+    "da": "Send beskeder til din Whatsapp, Signal, Telegram og Facebook messenger",
+    "ru": "Отправляйте сообщения в Whatsapp, Signal, Telegram и Facebook messenger",
+    "pl": "Wysyłaj wiadomości do komunikatora Whatsapp, Signal, Telegram i Facebook"
   },
   "tags": {
     "en": [

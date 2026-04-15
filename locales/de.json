@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "benefit": "Lass Homey Nachrichten an dein Telefon senden",
+    "tab1": {
+      "title": "Einstellungen",
+      "instructionsTitle": "Anleitung",
+      "instructions": "Fügen Sie über Homey Geräte ein Empfängertelefon hinzu. Sie können aus einer Reihe von Nachrichtendiensten auswählen. Gehen Sie auf callmebot.com für Anweisungen, wie Sie einen kostenlosen API-Key erhalten. Geben Sie den API-Key im Anmeldebildschirm zusammen mit der Empfängertelefonnummer (oder der Phone-ID für Signal) ein. Jetzt können Sie Textnachrichten aus einem Flow heraus senden."
+    },
+    "tab2": {
+      "title": "Protokolle",
+      "deleteLogs": "Protokolle löschen",
+      "deleteWarning": "Sind Sie sicher?",
+      "deleted": "Protokolle gelöscht"
+    }
+  }
+}

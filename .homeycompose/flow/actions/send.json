@@ -1,9 +1,27 @@
 {
     "title": {
-      "en": "Send a message"
+      "en": "Send a message",
+      "nl": "Stuur een bericht",
+      "de": "Sende eine Nachricht",
+      "fr": "Envoyer un message",
+      "es": "Enviar un mensaje",
+      "it": "Invia un messaggio",
+      "sv": "Skicka ett meddelande",
+      "no": "Send en melding",
+      "da": "Send en besked",
+      "ru": "Отправить сообщение"
     },
     "titleFormatted": {
-      "en": "Send message [[msg]]"
+      "en": "Send message [[msg]]",
+      "nl": "Stuur bericht [[msg]]",
+      "de": "Sende Nachricht [[msg]]",
+      "fr": "Envoyer le message [[msg]]",
+      "es": "Enviar mensaje [[msg]]",
+      "it": "Invia messaggio [[msg]]",
+      "sv": "Skicka meddelande [[msg]]",
+      "no": "Send melding [[msg]]",
+      "da": "Send besked [[msg]]",
+      "ru": "Отправить сообщение [[msg]]"
     },
     "args": [
       {
@@ -15,7 +33,16 @@
         "name": "msg",
         "type": "text",
         "placeholder": {
-          "en": "Text"
+          "en": "Text",
+          "nl": "Tekst",
+          "de": "Text",
+          "fr": "Texte",
+          "es": "Texto",
+          "it": "Testo",
+          "sv": "Text",
+          "no": "Tekst",
+          "da": "Tekst",
+          "ru": "Текст"
         }
       }
     ]

@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "benefit": "Laissez Homey envoyer des messages sur votre téléphone",
+    "tab1": {
+      "title": "Paramètres",
+      "instructionsTitle": "Instructions",
+      "instructions": "Ajoutez un téléphone de réception via les appareils Homey. Vous pouvez choisir parmi plusieurs services de messagerie. Allez sur callmebot.com pour obtenir des instructions sur la façon d'obtenir une clé API gratuite. Entrez la clé API dans l'écran de connexion, avec le numéro de téléphone de réception (ou l'ID du téléphone pour Signal). Vous pouvez maintenant commencer à envoyer des messages texte depuis un flow."
+    },
+    "tab2": {
+      "title": "Journaux",
+      "deleteLogs": "Supprimer les journaux",
+      "deleteWarning": "Êtes-vous sûr ?",
+      "deleted": "Journaux supprimés"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "benefit": "Lascia che Homey invii messaggi al tuo telefono",
+    "tab1": {
+      "title": "Impostazioni",
+      "instructionsTitle": "Istruzioni",
+      "instructions": "Aggiungi un telefono ricevente tramite Dispositivi Homey. Puoi scegliere tra una serie di servizi di messaggistica. Vai su callmebot.com per istruzioni su come ottenere una chiave API gratuita. Inserisci la chiave API nella schermata di accesso, insieme al numero di telefono ricevente (o ID telefono per Signal). Ora puoi iniziare a inviare messaggi di testo da un flow."
+    },
+    "tab2": {
+      "title": "Log",
+      "deleteLogs": "Elimina log",
+      "deleteWarning": "Sei sicuro?",
+      "deleted": "Log eliminati"
+    }
+  }
+}
