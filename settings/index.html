@@ -5,18 +5,104 @@
 		<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
 		<script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
 		<script type="text/javascript" src="settings.js" data-origin="settings"></script>
-		</head>
+		<style>
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+				color: #333;
+			}
+			.benefit {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #666;
+				margin-bottom: 20px;
+			}
+			.tabs-container {
+				display: flex;
+				gap: 10px;
+				border-bottom: 2px solid #f0f0f0;
+				margin-bottom: 20px;
+			}
+			.tab {
+				padding: 10px 20px;
+				cursor: pointer;
+				font-weight: 600;
+				color: #888;
+				border-bottom: 2px solid transparent;
+				margin-bottom: -2px;
+				transition: all 0.3s ease;
+			}
+			.tab:hover {
+				color: #333;
+			}
+			.tab:not(.tab-inactive) {
+				color: #f0a846; /* Homey App Brand Color */
+				border-bottom-color: #f0a846;
+			}
+			fieldset.listContainer {
+				border: 1px solid #e0e0e0;
+				border-radius: 8px;
+				padding: 20px;
+				background: #fafafa;
+				box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+			}
+			legend {
+				font-weight: 600;
+				color: #444;
+				padding: 0 10px;
+				background: #fafafa;
+				border-radius: 4px;
+			}
+			.instructions {
+				line-height: 1.6;
+				color: #555;
+			}
+			.setting {
+				display: flex;
+				align-items: center;
+				gap: 15px;
+				margin-bottom: 20px;
+			}
+			.settings-item-description {
+				font-weight: 600;
+				color: #444;
+			}
+			.btn {
+				background-color: #f0a846;
+				color: white;
+				border: none;
+				border-radius: 6px;
+				padding: 8px 16px;
+				cursor: pointer;
+				font-size: 14px;
+				font-weight: 600;
+				transition: background-color 0.2s;
+			}
+			.btn:hover {
+				background-color: #d9963e;
+			}
+			#loglines {
+				margin-top: 10px;
+				background: #1e1e1e;
+				color: #d4d4d4;
+				padding: 15px;
+				border-radius: 8px;
+				font-family: "Consolas", "Courier New", monospace;
+				font-size: 13px;
+				max-height: 400px;
+				overflow-y: auto;
+				white-space: pre-wrap;
+				box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+			}
+		</style>
+	</head>
 	<body>
 		<div id="app">
 			<p data-i18n="settings.benefit" class="benefit">Send messages via a flow</p>
-			<div class="rTable tabs">
-				<div class="rTableRow">
-					<div id="tabb1" class="tab tab-inactive" onclick="showTab(1)" data-i18n="settings.tab1.title">Settings</div>
-					<div id="tabb2" class="tab tab-inactive" onclick="showTab(2)" data-i18n="settings.tab2.title">Log</div>
-				</div>
+			<div class="tabs-container">
+				<div id="tabb1" class="tab tab-inactive" onclick="showTab(1)" data-i18n="settings.tab1.title">Settings</div>
+				<div id="tabb2" class="tab tab-inactive" onclick="showTab(2)" data-i18n="settings.tab2.title">Log</div>
 			</div>
 			<div class="tab-content">
-				<div style="height:8px" class="panel"></div>
 
 				<!-- Instructions panel -->
 				<div id="tab1" class="panel" style="display: none;">
@@ -31,12 +117,11 @@
 					<div class="setting">
 						<label class="settings-item-description" data-i18n="settings.tab2.deleteLogs">Delete</label>
 						<button id="deleteButton" class="btn" onclick="deleteLogs()" data-i18n="settings.tab2.deleteLogs">Delete</button>
-						<div id="loglines" class="instructions"></div>
 					</div>
+					<div id="loglines"></div>
 				</div>
 
 			</div>
 		</div>
 	</body>
 </html>
-
