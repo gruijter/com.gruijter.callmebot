@@ -95,7 +95,7 @@ class Device extends Homey.Device {
 
   async sendImage(args) {
     // get the image token
-    const image = await args.droptoken;
+    const image = await (args.image || args.droptoken);
     if (!image) throw new Error('No valid image provided.');
 
     // rate limit fb

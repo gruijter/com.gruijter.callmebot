@@ -88,7 +88,7 @@ class captureLogs {
       if (this.logArray.length >= this.logLength) {
         this.logArray.shift();
       }
-      this.logArray.push(string);
+      this.logArray.push(string.toString());
       // return false; // prevent the write to the original stream
     });
     this.homey.log('capturing stdout');

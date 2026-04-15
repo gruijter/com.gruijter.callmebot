@@ -95,7 +95,7 @@ class Driver extends Homey.Driver {
     };
     const options = {
       hostname: 'api.callmebot.com',
-      path: `${this.ds.imagePath}?${new URLSearchParams(query).toString().replace(/phone=%2B/gi, 'phone=+')}`,
+      path: `${this.ds.imagePath}?${new URLSearchParams(query).toString().replace(/%2B/gi, '+')}`,
       headers,
       method: 'GET',
     };
@@ -113,10 +113,12 @@ class Driver extends Homey.Driver {
 
   // http://api.callmebot.com/start.php?user=@username&text=This+is+a+robot+calling+you+to+inform+you+about+something+urgent+that+is+happening&lang=en-GB-Standard-B&rpt=2
   async sendVoice(args) {
+    const langId = args.language?.id || args.language;
+    const voiceId = args.voice?.id || args.voice;
     const query = {
       user: args.device.settings.number,
       text: args.msg,
-      lang: `${args.language}-Standard-${args.voice}`,
+      lang: `${langId}-Standard-${voiceId}`,
       rpt: 2, // number to repeat msg
     };
     const headers = {
