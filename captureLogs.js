@@ -20,7 +20,7 @@ along with com.gruijter.callmebot.  If not, see <http://www.gnu.org/licenses/>.
 'use strict';
 
 const StdOutFixture = require('fixture-stdout');
-const fs = require('fs');
+const fs = require('fs').promises;
 
 class captureLogs {
   // Log object to keep logs in memory and in persistent storage
@@ -37,46 +37,47 @@ class captureLogs {
     this.readLogs().catch(() => []);
   }
 
-  readLogs() {
+  async readLogs() {
     try {
-      const log = fs.readFileSync(this.logFile, 'utf8');
+      const log = await fs.readFile(this.logFile, 'utf8');
       this.logArray = JSON.parse(log);
       this.homey.log('logfile retrieved');
-      return Promise.resolve(this.logArray);
+      return this.logArray;
     } catch (error) {
-      if (error.message.includes('ENOENT')) {
+      if (error.code === 'ENOENT') {
         this.homey.log('logfile not found');
-        return Promise.resolve(this.logArray);
+        return this.logArray;
       }
       this.homey.error('error parsing logfile: ', error.message);
-      return Promise.reject(error);
+      throw error;
     }
   }
 
-  saveLogs() {
+  async saveLogs() {
     try {
       this.homey.log('saving logfile...');
-      fs.writeFileSync(this.logFile, JSON.stringify(this.logArray));
-      return Promise.resolve('logfile saved');
+      await fs.writeFile(this.logFile, JSON.stringify(this.logArray));
+      return 'logfile saved';
     } catch (error) {
       this.homey.error('error writing logfile: ', error.message);
-      return Promise.reject(error);
+      throw error;
     }
   }
 
-  deleteLogs() {
+  async deleteLogs() {
     try {
-      fs.unlinkSync(this.logFile);
+      await fs.unlink(this.logFile);
       this.logArray = [];
       this.homey.log('logfile deleted');
-      return Promise.resolve('logfile deleted');
+      return 'logfile deleted';
     } catch (error) {
-      if (error.message.includes('ENOENT')) {
+      if (error.code === 'ENOENT') {
         this.logArray = [];
-        return Promise.resolve(this.homey.log('logfile not found, in-memory logs deleted'));
+        this.homey.log('logfile not found, in-memory logs deleted');
+        return 'logfile not found, in-memory logs deleted';
       }
       this.homey.error('error deleting logfile: ', error.message);
-      return Promise.reject(error);
+      throw error;
     }
   }
 

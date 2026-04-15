@@ -20,7 +20,8 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 'use strict';
 
 const Homey = require('homey');
-const fs = require('fs');
+const fs = require('fs'); // for createWriteStream
+const fsPromises = require('fs').promises;
 
 const util = require('util');
 
@@ -83,61 +84,72 @@ class Device extends Homey.Device {
     this.setCapability('last_sent', `${date} ${time}`);
   }
 
-  async deleteFile(filename, delay) {
+  async deleteFile(filename) {
     try {
-      await setTimeoutPromise(delay, 'waiting is done');
-      if (fs.existsSync(filename)) {
-        fs.unlinkSync(filename);
-      }
+      await fsPromises.unlink(filename);
       this.log('deleted', filename);
     } catch (error) {
-      this.error(error);
+      // It's okay if the file doesn't exist (e.g., already deleted).
+      if (error.code !== 'ENOENT') {
+        this.error('Error deleting temp file:', error);
+      }
     }
   }
 
   async sendImage(args) {
+    // get the image token
+    const image = await args.droptoken;
+    if (!image) throw new Error('No valid image provided.');
+
+    // rate limit fb
+    const { driverId } = args.device.driver.ds;
+    if (driverId === 'fb') {
+      if ((Date.now() - this.lastFbImageSent) < 65000) throw new Error('Only 1 image per minute allowed for Facebook.');
+      this.lastFbImageSent = Date.now();
+    }
+
+    const args2 = { ...args };
+    let tempImagePath = null;
+
     try {
-      // rate limit fb
-      const { driverId } = args.device.driver.ds;
-      if (driverId === 'fb') {
-        if ((Date.now() - this.lastFbImageSent) < 65000) throw Error('Only 1 image per minute allowed');
-        this.lastFbImageSent = Date.now();
+      // Prefer using the existing public cloud URL if available.
+      if (image.cloudUrl) {
+        this.log('Using existing image cloudUrl');
+        args2.imgUrl = image.cloudUrl;
+      } else {
+        // If no cloudUrl, stage the image locally and create a public connect URL.
+        this.log('Staging image locally...');
+        if (!image.getStream) throw new Error('Image is not streamable.');
+
+        const imgStream = await image.getStream();
+        const filename = `${Date.now()}_${imgStream.filename || 'image.jpg'}`;
+        tempImagePath = `/userdata/${filename}`;
+
+        // Save the image stream to a temporary file using a robust pipeline.
+        const { pipeline } = require('stream/promises');
+        await pipeline(imgStream, fs.createWriteStream(tempImagePath));
+        this.log('Image saved to', tempImagePath);
+
+        // Create a public URL for the staged file.
+        const cloudID = await this.homey.cloud.getHomeyId();
+        args2.imgUrl = `https://${cloudID}.connect.athom.com/app/com.gruijter.callmebot/userdata/${filename}`;
       }
 
-      // get the contents of the image
-      const image = await args.droptoken;
-      if (!image || !image.getStream) throw Error('No valid image');
-      const imgStream = await image.getStream();
-
-      // set filename for save on Homey
-      const filename = `${Date.now()}_${imgStream.filename || 'image.jpg'}`;
-
-      // save the image and wait for finish
-      await new Promise((fulfill) => {
-        imgStream.on('finish', fulfill);
-        imgStream.on('close', fulfill);
-        imgStream.on('error', fulfill);
-        imgStream.on('unpipe', fulfill);
-        const targetFile = fs.createWriteStream(`/userdata/${filename}`);
-        imgStream.pipe(targetFile);
-      });
-
-      // delete the image after 30 seconds delay
-      this.deleteFile(`/userdata/${filename}`, 30 * 1000).catch(this.error);
-
-      // send the image
-      // await setTimeoutPromise(5000, 'waiting is done');
-      const args2 = { ...args };
-      const cloudID = await this.homey.cloud.getHomeyId();
-      // args2.imgUrl = image.cloudUrl; // this is a cloudlink of the image. Image is updated on fetch by CallMeBot
-      args2.imgUrl = `https://${cloudID}.connect.athom.com/app/com.gruijter.callmebot/userdata/${filename}`;
       const result = await this.driver.sendImage(args2);
       this.updateLastSent();
       this.log(result);
       return true;
     } catch (error) {
       this.error(error);
-      throw error;
+      throw error; // Re-throw to notify the flow of failure.
+    } finally {
+      // Clean up the staged file after the API call is complete.
+      if (tempImagePath) {
+        // Use a small delay before deleting, just in case the API fetches the URL asynchronously after returning a 200 OK.
+        setTimeout(() => {
+          this.deleteFile(tempImagePath).catch(this.error);
+        }, 5000); // 5-second delay
+      }
     }
   }
 
