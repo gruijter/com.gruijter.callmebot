@@ -20,3 +20,6 @@ Thumbs.db
 # IDE settings (optional)
 .vscode/
 .idea/
+.claude/
+.github/
+AGENTS.md
