@@ -27,6 +27,9 @@ const stripHtml = (html) => html
   .replace(/\s+/g, ' ')
   .trim();
 
+// CallMeBot expects a literal + in the phone number; keep %2B everywhere else (+ means space)
+const toQueryString = (query) => new URLSearchParams(query).toString().replace(/(^|&)phone=%2B/, '$1phone=+');
+
 class Driver extends Homey.Driver {
 
   async onDriverInit() {
@@ -101,7 +104,7 @@ class Driver extends Homey.Driver {
     };
     const options = {
       hostname: 'api.callmebot.com',
-      path: `${this.ds.imagePath}?${new URLSearchParams(query).toString().replace(/%2B/gi, '+')}`,
+      path: `${this.ds.imagePath}?${toQueryString(query)}`,
       headers,
       method: 'GET',
     };
@@ -132,7 +135,7 @@ class Driver extends Homey.Driver {
     };
     const options = {
       hostname: 'api.callmebot.com',
-      path: `${this.ds.voicePath}?${new URLSearchParams(query).toString().replace(/%2B/gi, '+')}`,
+      path: `${this.ds.voicePath}?${toQueryString(query)}`,
       headers,
       method: 'GET',
     };
@@ -170,7 +173,7 @@ class Driver extends Homey.Driver {
     };
     const options = {
       hostname: 'api.callmebot.com',
-      path: `${this.ds.path}?${new URLSearchParams(query).toString().replace(/%2B/gi, '+')}`,
+      path: `${this.ds.path}?${toQueryString(query)}`,
       headers,
       method: 'GET',
     };
