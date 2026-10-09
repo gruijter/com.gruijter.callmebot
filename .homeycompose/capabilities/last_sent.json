@@ -1,19 +1,21 @@
 {
-	"type": "string",
-	"title": {
-		"en": "Last sent",
-		"nl": "Laatst verzonden",
-		"de": "Zuletzt gesendet",
-		"fr": "Dernier envoi",
-		"es": "Último envío",
-		"it": "Ultimo invio",
-		"sv": "Senast skickad",
-		"no": "Sist sendt",
-		"da": "Sidst sendt",
-		"ru": "Последняя отправка",
-		"pl": "Ostatnio wysłano"
-	},
-	"getable": true,
-	"setable": false,
-	"icon": "./assets/last_sent.svg"
+  "type": "string",
+  "title": {
+    "en": "Last sent",
+    "nl": "Laatst verzonden",
+    "de": "Zuletzt gesendet",
+    "fr": "Dernier envoi",
+    "es": "Último envío",
+    "it": "Ultimo invio",
+    "sv": "Senast skickad",
+    "no": "Sist sendt",
+    "da": "Sidst sendt",
+    "ru": "Последняя отправка",
+    "pl": "Ostatnio wysłano",
+    "ar": "آخر إرسال",
+    "ko": "마지막 전송"
+  },
+  "getable": true,
+  "setable": false,
+  "icon": "./assets/last_sent.svg"
 }

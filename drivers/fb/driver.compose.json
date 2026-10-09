@@ -1,6 +1,102 @@
 {
   "name": {
-    "en": "FB Messenger"
+    "en": "FB Messenger",
+    "nl": "FB Messenger",
+    "de": "FB Messenger",
+    "fr": "FB Messenger",
+    "es": "FB Messenger",
+    "it": "FB Messenger",
+    "da": "FB Messenger",
+    "sv": "FB Messenger",
+    "no": "FB Messenger",
+    "pl": "FB Messenger",
+    "ru": "FB Messenger",
+    "ar": "FB Messenger",
+    "ko": "FB Messenger"
   },
-  "$extends": ["driver_defaults"]
+  "$extends": [
+    "driver_defaults"
+  ],
+  "pair": [
+    {
+      "id": "login_credentials",
+      "template": "login_credentials",
+      "options": {
+        "usernameLabel": {
+          "en": "Device name",
+          "nl": "Apparaatnaam",
+          "de": "Gerätename",
+          "fr": "Nom de l'appareil",
+          "es": "Nombre del dispositivo",
+          "it": "Nome dispositivo",
+          "da": "Enhedsnavn",
+          "sv": "Enhetsnamn",
+          "no": "Enhetsnavn",
+          "pl": "Nazwa urządzenia",
+          "ru": "Имя устройства",
+          "ar": "اسم الجهاز",
+          "ko": "기기 이름"
+        },
+        "usernamePlaceholder": {
+          "en": "My Messenger",
+          "nl": "Mijn Messenger",
+          "de": "Mein Messenger",
+          "fr": "Mon Messenger",
+          "es": "Mi Messenger",
+          "it": "Il mio Messenger",
+          "da": "Min Messenger",
+          "sv": "Min Messenger",
+          "no": "Min Messenger",
+          "pl": "Mój Messenger",
+          "ru": "Мой Messenger",
+          "ar": "Messenger الخاص بي",
+          "ko": "내 Messenger"
+        },
+        "passwordLabel": {
+          "en": "API key",
+          "nl": "API-sleutel",
+          "de": "API-Schlüssel",
+          "fr": "Clé API",
+          "es": "Clave API",
+          "it": "Chiave API",
+          "da": "API-nøgle",
+          "sv": "API-nyckel",
+          "no": "API-nøkkel",
+          "pl": "Klucz API",
+          "ru": "API-ключ",
+          "ar": "مفتاح API",
+          "ko": "API 키"
+        },
+        "passwordPlaceholder": {
+          "en": "From the CallMeBot bot",
+          "nl": "Van de CallMeBot-bot",
+          "de": "Vom CallMeBot-Bot",
+          "fr": "Fournie par le bot CallMeBot",
+          "es": "Del bot de CallMeBot",
+          "it": "Dal bot CallMeBot",
+          "da": "Fra CallMeBot-botten",
+          "sv": "Från CallMeBot-boten",
+          "no": "Fra CallMeBot-boten",
+          "pl": "Od bota CallMeBot",
+          "ru": "От бота CallMeBot",
+          "ar": "من بوت CallMeBot",
+          "ko": "CallMeBot 봇에서 받은 키"
+        }
+      }
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      },
+      "options": {
+        "singular": true
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ]
 }

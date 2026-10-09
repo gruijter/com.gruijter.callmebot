@@ -1,52 +1,58 @@
 {
-    "title": {
-      "en": "Send a group message",
-      "nl": "Stuur een groepsbericht",
-      "de": "Sende eine Gruppennachricht",
-      "fr": "Envoyer un message de groupe",
-      "es": "Enviar un mensaje de grupo",
-      "it": "Invia un messaggio di gruppo",
-      "sv": "Skicka ett gruppmeddelande",
-      "no": "Send en gruppemelding",
-      "da": "Send en gruppebesked",
-      "ru": "Отправить групповое сообщение",
-      "pl": "Wyślij wiadomość grupową"
+  "title": {
+    "en": "Send a group message",
+    "nl": "Stuur een groepsbericht",
+    "de": "Sende eine Gruppennachricht",
+    "fr": "Envoyer un message de groupe",
+    "es": "Enviar un mensaje de grupo",
+    "it": "Invia un messaggio di gruppo",
+    "sv": "Skicka ett gruppmeddelande",
+    "no": "Send en gruppemelding",
+    "da": "Send en gruppebesked",
+    "ru": "Отправить групповое сообщение",
+    "pl": "Wyślij wiadomość grupową",
+    "ar": "إرسال رسالة جماعية",
+    "ko": "그룹 메시지 보내기"
+  },
+  "titleFormatted": {
+    "en": "Send group message [[msg]]",
+    "nl": "Stuur groepsbericht [[msg]]",
+    "de": "Sende Gruppennachricht [[msg]]",
+    "fr": "Envoyer le message de groupe [[msg]]",
+    "es": "Enviar mensaje de grupo [[msg]]",
+    "it": "Invia messaggio di gruppo [[msg]]",
+    "sv": "Skicka gruppmeddelande [[msg]]",
+    "no": "Send gruppemelding [[msg]]",
+    "da": "Send gruppebesked [[msg]]",
+    "ru": "Отправить групповое сообщение [[msg]]",
+    "pl": "Wyślij wiadomość grupową [[msg]]",
+    "ar": "إرسال رسالة جماعية [[msg]]",
+    "ko": "그룹 메시지 [[msg]] 보내기"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=telegram"
     },
-    "titleFormatted": {
-      "en": "Send group message [[msg]]",
-      "nl": "Stuur groepsbericht [[msg]]",
-      "de": "Sende Gruppennachricht [[msg]]",
-      "fr": "Envoyer le message de groupe [[msg]]",
-      "es": "Enviar mensaje de grupo [[msg]]",
-      "it": "Invia messaggio di gruppo [[msg]]",
-      "sv": "Skicka gruppmeddelande [[msg]]",
-      "no": "Send gruppemelding [[msg]]",
-      "da": "Send gruppebesked [[msg]]",
-      "ru": "Отправить групповое сообщение [[msg]]",
-      "pl": "Wyślij wiadomość grupową [[msg]]"
-    },
-    "args": [
-      {
-        "type": "device",
-        "name": "device",
-        "filter": "driver_id=telegram"
-      },
-      {
-        "name": "msg",
-        "type": "text",
-        "placeholder": {
-          "en": "Text",
-          "nl": "Tekst",
-          "de": "Text",
-          "fr": "Texte",
-          "es": "Texto",
-          "it": "Testo",
-          "sv": "Text",
-          "no": "Tekst",
-          "da": "Tekst",
-          "ru": "Текст",
-          "pl": "Tekst"
-        }
+    {
+      "name": "msg",
+      "type": "text",
+      "placeholder": {
+        "en": "Text",
+        "nl": "Tekst",
+        "de": "Text",
+        "fr": "Texte",
+        "es": "Texto",
+        "it": "Testo",
+        "sv": "Text",
+        "no": "Tekst",
+        "da": "Tekst",
+        "ru": "Текст",
+        "pl": "Tekst",
+        "ar": "النص",
+        "ko": "텍스트"
       }
-    ]
+    }
+  ]
 }

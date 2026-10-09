@@ -1,103 +1,334 @@
 {
-    "title": {
-      "en": "Send voice message",
-      "nl": "Stuur spraakbericht",
-      "de": "Sende Sprachnachricht",
-      "fr": "Envoyer un message vocal",
-      "es": "Enviar mensaje de voz",
-      "it": "Invia messaggio vocale",
-      "sv": "Skicka röstmeddelande",
-      "no": "Send talemelding",
-      "da": "Send talebesked",
-      "ru": "Отправить голосовое сообщение",
-      "pl": "Wyślij wiadomość głosową"
+  "title": {
+    "en": "Send voice message",
+    "nl": "Stuur spraakbericht",
+    "de": "Sende Sprachnachricht",
+    "fr": "Envoyer un message vocal",
+    "es": "Enviar mensaje de voz",
+    "it": "Invia messaggio vocale",
+    "sv": "Skicka röstmeddelande",
+    "no": "Send talemelding",
+    "da": "Send talebesked",
+    "ru": "Отправить голосовое сообщение",
+    "pl": "Wyślij wiadomość głosową",
+    "ar": "إرسال رسالة صوتية",
+    "ko": "음성 메시지 보내기"
+  },
+  "titleFormatted": {
+    "en": "Send voice message [[msg]] in [[language]] [[voice]]",
+    "nl": "Stuur spraakbericht [[msg]] in [[language]] [[voice]]",
+    "de": "Sende Sprachnachricht [[msg]] auf [[language]] [[voice]]",
+    "fr": "Envoyer le message vocal [[msg]] en [[language]] [[voice]]",
+    "es": "Enviar mensaje de voz [[msg]] en [[language]] [[voice]]",
+    "it": "Invia messaggio vocale [[msg]] in [[language]] [[voice]]",
+    "sv": "Skicka röstmeddelande [[msg]] på [[language]] [[voice]]",
+    "no": "Send talemelding [[msg]] på [[language]] [[voice]]",
+    "da": "Send talebesked [[msg]] på [[language]] [[voice]]",
+    "ru": "Отправить голосовое сообщение [[msg]] на [[language]] [[voice]]",
+    "pl": "Wyślij wiadomość głosową [[msg]] w [[language]] [[voice]]",
+    "ar": "إرسال رسالة صوتية [[msg]] باللغة [[language]] [[voice]]",
+    "ko": "음성 메시지 [[msg]] 보내기, 언어 [[language]] [[voice]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=telegram"
     },
-    "titleFormatted": {
-      "en": "Send voice message [[msg]] in [[language]] [[voice]]",
-      "nl": "Stuur spraakbericht [[msg]] in [[language]] [[voice]]",
-      "de": "Sende Sprachnachricht [[msg]] auf [[language]] [[voice]]",
-      "fr": "Envoyer le message vocal [[msg]] en [[language]] [[voice]]",
-      "es": "Enviar mensaje de voz [[msg]] en [[language]] [[voice]]",
-      "it": "Invia messaggio vocale [[msg]] in [[language]] [[voice]]",
-      "sv": "Skicka röstmeddelande [[msg]] på [[language]] [[voice]]",
-      "no": "Send talemelding [[msg]] på [[language]] [[voice]]",
-      "da": "Send talebesked [[msg]] på [[language]] [[voice]]",
-      "ru": "Отправить голосовое сообщение [[msg]] на [[language]] [[voice]]",
-      "pl": "Wyślij wiadomość głosową [[msg]] w [[language]] [[voice]]"
-    },
-    "args": [
-      {
-        "type": "device",
-        "name": "device",
-        "filter": "driver_id=telegram"
-      },
-      {
-        "name": "msg",
-        "type": "text",
-        "placeholder": {
-          "en": "Text",
-          "nl": "Tekst",
-          "de": "Text",
-          "fr": "Texte",
-          "es": "Texto",
-          "it": "Testo",
-          "sv": "Text",
-          "no": "Tekst",
-          "da": "Tekst",
-          "ru": "Текст",
-          "pl": "Tekst"
-        }
-      },
-      {
-        "name": "language",
-        "type": "dropdown",
-        "title": { 
-          "en": "Language",
-          "nl": "Taal",
-          "de": "Sprache",
-          "fr": "Langue",
-          "es": "Idioma",
-          "it": "Lingua",
-          "sv": "Språk",
-          "no": "Språk",
-          "da": "Sprog",
-          "ru": "Язык",
-          "pl": "Język"
-        },
-        "values": [
-          { "id": "en-GB", "label": { "en": "EN" } },
-          { "id": "nl-NL", "label": { "en": "NL" } },
-          { "id": "de-DE", "label": { "en": "DE" } },
-          { "id": "it-IT", "label": { "en": "IT" } },
-          { "id": "fr-FR", "label": { "en": "FR" } },
-          { "id": "sv-SE", "label": { "en": "SV" } },
-          { "id": "nb-NO", "label": { "en": "NB" } },
-          { "id": "da-DK", "label": { "en": "DA" } },
-          { "id": "es-ES", "label": { "en": "ES" } },
-          { "id": "pl-PL", "label": { "en": "PL" } },
-          { "id": "ru-RU", "label": { "en": "RU" } }
-        ]
-      },
-      {
-        "name": "voice",
-        "type": "dropdown",
-        "title": { 
-          "en": "Voice",
-          "nl": "Stem",
-          "de": "Stimme",
-          "fr": "Voix",
-          "es": "Voz",
-          "it": "Voce",
-          "sv": "Röst",
-          "no": "Stemme",
-          "da": "Stemme",
-          "ru": "Голос",
-          "pl": "Głos"
-        },
-        "values": [
-          { "id": "A", "label": { "en": "Female", "nl": "Vrouw", "de": "Weiblich", "fr": "Femme", "es": "Femenina", "it": "Femminile", "sv": "Kvinna", "no": "Kvinne", "da": "Kvinde", "ru": "Женский", "pl": "Kobieta" } },
-          { "id": "B", "label": { "en": "Male", "nl": "Man", "de": "Männlich", "fr": "Homme", "es": "Masculino", "it": "Maschile", "sv": "Man", "no": "Mann", "da": "Mand", "ru": "Мужской", "pl": "Mężczyzna" } }
-        ]
+    {
+      "name": "msg",
+      "type": "text",
+      "placeholder": {
+        "en": "Text",
+        "nl": "Tekst",
+        "de": "Text",
+        "fr": "Texte",
+        "es": "Texto",
+        "it": "Testo",
+        "sv": "Text",
+        "no": "Tekst",
+        "da": "Tekst",
+        "ru": "Текст",
+        "pl": "Tekst",
+        "ar": "النص",
+        "ko": "텍스트"
       }
-    ]
+    },
+    {
+      "name": "language",
+      "type": "dropdown",
+      "title": {
+        "en": "Language",
+        "nl": "Taal",
+        "de": "Sprache",
+        "fr": "Langue",
+        "es": "Idioma",
+        "it": "Lingua",
+        "sv": "Språk",
+        "no": "Språk",
+        "da": "Sprog",
+        "ru": "Язык",
+        "pl": "Język",
+        "ar": "اللغة",
+        "ko": "언어"
+      },
+      "values": [
+        {
+          "id": "en-GB",
+          "label": {
+            "en": "EN",
+            "nl": "EN",
+            "de": "EN",
+            "fr": "EN",
+            "es": "EN",
+            "it": "EN",
+            "da": "EN",
+            "sv": "EN",
+            "no": "EN",
+            "pl": "EN",
+            "ru": "EN",
+            "ar": "EN",
+            "ko": "EN"
+          }
+        },
+        {
+          "id": "nl-NL",
+          "label": {
+            "en": "NL",
+            "nl": "NL",
+            "de": "NL",
+            "fr": "NL",
+            "es": "NL",
+            "it": "NL",
+            "da": "NL",
+            "sv": "NL",
+            "no": "NL",
+            "pl": "NL",
+            "ru": "NL",
+            "ar": "NL",
+            "ko": "NL"
+          }
+        },
+        {
+          "id": "de-DE",
+          "label": {
+            "en": "DE",
+            "nl": "DE",
+            "de": "DE",
+            "fr": "DE",
+            "es": "DE",
+            "it": "DE",
+            "da": "DE",
+            "sv": "DE",
+            "no": "DE",
+            "pl": "DE",
+            "ru": "DE",
+            "ar": "DE",
+            "ko": "DE"
+          }
+        },
+        {
+          "id": "it-IT",
+          "label": {
+            "en": "IT",
+            "nl": "IT",
+            "de": "IT",
+            "fr": "IT",
+            "es": "IT",
+            "it": "IT",
+            "da": "IT",
+            "sv": "IT",
+            "no": "IT",
+            "pl": "IT",
+            "ru": "IT",
+            "ar": "IT",
+            "ko": "IT"
+          }
+        },
+        {
+          "id": "fr-FR",
+          "label": {
+            "en": "FR",
+            "nl": "FR",
+            "de": "FR",
+            "fr": "FR",
+            "es": "FR",
+            "it": "FR",
+            "da": "FR",
+            "sv": "FR",
+            "no": "FR",
+            "pl": "FR",
+            "ru": "FR",
+            "ar": "FR",
+            "ko": "FR"
+          }
+        },
+        {
+          "id": "sv-SE",
+          "label": {
+            "en": "SV",
+            "nl": "SV",
+            "de": "SV",
+            "fr": "SV",
+            "es": "SV",
+            "it": "SV",
+            "da": "SV",
+            "sv": "SV",
+            "no": "SV",
+            "pl": "SV",
+            "ru": "SV",
+            "ar": "SV",
+            "ko": "SV"
+          }
+        },
+        {
+          "id": "nb-NO",
+          "label": {
+            "en": "NB",
+            "nl": "NB",
+            "de": "NB",
+            "fr": "NB",
+            "es": "NB",
+            "it": "NB",
+            "da": "NB",
+            "sv": "NB",
+            "no": "NB",
+            "pl": "NB",
+            "ru": "NB",
+            "ar": "NB",
+            "ko": "NB"
+          }
+        },
+        {
+          "id": "da-DK",
+          "label": {
+            "en": "DA",
+            "nl": "DA",
+            "de": "DA",
+            "fr": "DA",
+            "es": "DA",
+            "it": "DA",
+            "da": "DA",
+            "sv": "DA",
+            "no": "DA",
+            "pl": "DA",
+            "ru": "DA",
+            "ar": "DA",
+            "ko": "DA"
+          }
+        },
+        {
+          "id": "es-ES",
+          "label": {
+            "en": "ES",
+            "nl": "ES",
+            "de": "ES",
+            "fr": "ES",
+            "es": "ES",
+            "it": "ES",
+            "da": "ES",
+            "sv": "ES",
+            "no": "ES",
+            "pl": "ES",
+            "ru": "ES",
+            "ar": "ES",
+            "ko": "ES"
+          }
+        },
+        {
+          "id": "pl-PL",
+          "label": {
+            "en": "PL",
+            "nl": "PL",
+            "de": "PL",
+            "fr": "PL",
+            "es": "PL",
+            "it": "PL",
+            "da": "PL",
+            "sv": "PL",
+            "no": "PL",
+            "pl": "PL",
+            "ru": "PL",
+            "ar": "PL",
+            "ko": "PL"
+          }
+        },
+        {
+          "id": "ru-RU",
+          "label": {
+            "en": "RU",
+            "nl": "RU",
+            "de": "RU",
+            "fr": "RU",
+            "es": "RU",
+            "it": "RU",
+            "da": "RU",
+            "sv": "RU",
+            "no": "RU",
+            "pl": "RU",
+            "ru": "RU",
+            "ar": "RU",
+            "ko": "RU"
+          }
+        }
+      ]
+    },
+    {
+      "name": "voice",
+      "type": "dropdown",
+      "title": {
+        "en": "Voice",
+        "nl": "Stem",
+        "de": "Stimme",
+        "fr": "Voix",
+        "es": "Voz",
+        "it": "Voce",
+        "sv": "Röst",
+        "no": "Stemme",
+        "da": "Stemme",
+        "ru": "Голос",
+        "pl": "Głos",
+        "ar": "الصوت",
+        "ko": "음성"
+      },
+      "values": [
+        {
+          "id": "A",
+          "label": {
+            "en": "Female",
+            "nl": "Vrouw",
+            "de": "Weiblich",
+            "fr": "Femme",
+            "es": "Femenina",
+            "it": "Femminile",
+            "sv": "Kvinna",
+            "no": "Kvinne",
+            "da": "Kvinde",
+            "ru": "Женский",
+            "pl": "Kobieta",
+            "ar": "أنثى",
+            "ko": "여성"
+          }
+        },
+        {
+          "id": "B",
+          "label": {
+            "en": "Male",
+            "nl": "Man",
+            "de": "Männlich",
+            "fr": "Homme",
+            "es": "Masculino",
+            "it": "Maschile",
+            "sv": "Man",
+            "no": "Mann",
+            "da": "Mand",
+            "ru": "Мужской",
+            "pl": "Mężczyzna",
+            "ar": "ذكر",
+            "ko": "남성"
+          }
+        }
+      ]
+    }
+  ]
 }

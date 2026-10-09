@@ -1,23 +1,25 @@
 {
-    "title": {
-      "en": "Send image",
-      "nl": "Stuur afbeelding",
-      "de": "Sende Bild",
-      "fr": "Envoyer une image",
-      "es": "Enviar imagen",
-      "it": "Invia immagine",
-      "sv": "Skicka bild",
-      "no": "Send bilde",
-      "da": "Send billede",
-      "ru": "Отправить изображение",
-      "pl": "Wyślij obraz"
-    },
-    "droptoken": "image",
-    "args": [
-        {
-          "type": "device",
-          "name": "device",
-          "filter": "driver_id=signal|fb"
-        }
-      ]
-  }
+  "title": {
+    "en": "Send image",
+    "nl": "Stuur afbeelding",
+    "de": "Sende Bild",
+    "fr": "Envoyer une image",
+    "es": "Enviar imagen",
+    "it": "Invia immagine",
+    "sv": "Skicka bild",
+    "no": "Send bilde",
+    "da": "Send billede",
+    "ru": "Отправить изображение",
+    "pl": "Wyślij obraz",
+    "ar": "إرسال صورة",
+    "ko": "이미지 보내기"
+  },
+  "droptoken": "image",
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=signal|fb"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "benefit": "Homey가 휴대폰으로 메시지를 보내게 하세요",
+    "tab1": {
+      "title": "설정",
+      "instructionsTitle": "안내",
+      "instructions": "Homey 기기에서 수신 휴대폰을 추가하세요. 여러 메시징 서비스 중에서 선택할 수 있습니다. 무료 API 키를 받는 방법은 callmebot.com을 참조하세요. 로그인 화면에 API 키와 함께 국가 코드를 포함한 수신 전화번호(Telegram의 경우 @사용자이름)를 입력하세요. 이제 flow에서 문자 메시지를 보낼 수 있습니다."
+    },
+    "tab2": {
+      "title": "로그",
+      "deleteLogs": "로그 삭제",
+      "deleteWarning": "확실합니까?",
+      "deleted": "로그가 삭제되었습니다"
+    }
+  }
+}

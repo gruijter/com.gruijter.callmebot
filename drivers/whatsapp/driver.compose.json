@@ -1,6 +1,102 @@
 {
   "name": {
-    "en": "WhatsApp"
+    "en": "WhatsApp",
+    "nl": "WhatsApp",
+    "de": "WhatsApp",
+    "fr": "WhatsApp",
+    "es": "WhatsApp",
+    "it": "WhatsApp",
+    "da": "WhatsApp",
+    "sv": "WhatsApp",
+    "no": "WhatsApp",
+    "pl": "WhatsApp",
+    "ru": "WhatsApp",
+    "ar": "WhatsApp",
+    "ko": "WhatsApp"
   },
-  "$extends": ["driver_defaults"]
+  "$extends": [
+    "driver_defaults"
+  ],
+  "pair": [
+    {
+      "id": "login_credentials",
+      "template": "login_credentials",
+      "options": {
+        "usernameLabel": {
+          "en": "Phone number",
+          "nl": "Telefoonnummer",
+          "de": "Telefonnummer",
+          "fr": "Numéro de téléphone",
+          "es": "Número de teléfono",
+          "it": "Numero di telefono",
+          "da": "Telefonnummer",
+          "sv": "Telefonnummer",
+          "no": "Telefonnummer",
+          "pl": "Numer telefonu",
+          "ru": "Номер телефона",
+          "ar": "رقم الهاتف",
+          "ko": "전화번호"
+        },
+        "usernamePlaceholder": {
+          "en": "+31 6 12345678",
+          "nl": "+31 6 12345678",
+          "de": "+31 6 12345678",
+          "fr": "+31 6 12345678",
+          "es": "+31 6 12345678",
+          "it": "+31 6 12345678",
+          "da": "+31 6 12345678",
+          "sv": "+31 6 12345678",
+          "no": "+31 6 12345678",
+          "pl": "+31 6 12345678",
+          "ru": "+31 6 12345678",
+          "ar": "+31 6 12345678",
+          "ko": "+31 6 12345678"
+        },
+        "passwordLabel": {
+          "en": "API key",
+          "nl": "API-sleutel",
+          "de": "API-Schlüssel",
+          "fr": "Clé API",
+          "es": "Clave API",
+          "it": "Chiave API",
+          "da": "API-nøgle",
+          "sv": "API-nyckel",
+          "no": "API-nøkkel",
+          "pl": "Klucz API",
+          "ru": "API-ключ",
+          "ar": "مفتاح API",
+          "ko": "API 키"
+        },
+        "passwordPlaceholder": {
+          "en": "From the CallMeBot bot",
+          "nl": "Van de CallMeBot-bot",
+          "de": "Vom CallMeBot-Bot",
+          "fr": "Fournie par le bot CallMeBot",
+          "es": "Del bot de CallMeBot",
+          "it": "Dal bot CallMeBot",
+          "da": "Fra CallMeBot-botten",
+          "sv": "Från CallMeBot-boten",
+          "no": "Fra CallMeBot-boten",
+          "pl": "Od bota CallMeBot",
+          "ru": "От бота CallMeBot",
+          "ar": "من بوت CallMeBot",
+          "ko": "CallMeBot 봇에서 받은 키"
+        }
+      }
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      },
+      "options": {
+        "singular": true
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ]
 }

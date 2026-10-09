@@ -1,6 +1,102 @@
 {
   "name": {
-    "en": "Telegram"
+    "en": "Telegram",
+    "nl": "Telegram",
+    "de": "Telegram",
+    "fr": "Telegram",
+    "es": "Telegram",
+    "it": "Telegram",
+    "da": "Telegram",
+    "sv": "Telegram",
+    "no": "Telegram",
+    "pl": "Telegram",
+    "ru": "Telegram",
+    "ar": "Telegram",
+    "ko": "Telegram"
   },
-  "$extends": ["driver_defaults"]
+  "$extends": [
+    "driver_defaults"
+  ],
+  "pair": [
+    {
+      "id": "login_credentials",
+      "template": "login_credentials",
+      "options": {
+        "usernameLabel": {
+          "en": "Username or phone number",
+          "nl": "Gebruikersnaam of telefoonnummer",
+          "de": "Benutzername oder Telefonnummer",
+          "fr": "Nom d'utilisateur ou numéro de téléphone",
+          "es": "Nombre de usuario o número de teléfono",
+          "it": "Nome utente o numero di telefono",
+          "da": "Brugernavn eller telefonnummer",
+          "sv": "Användarnamn eller telefonnummer",
+          "no": "Brukernavn eller telefonnummer",
+          "pl": "Nazwa użytkownika lub numer telefonu",
+          "ru": "Имя пользователя или номер телефона",
+          "ar": "اسم المستخدم أو رقم الهاتف",
+          "ko": "사용자 이름 또는 전화번호"
+        },
+        "usernamePlaceholder": {
+          "en": "@myusername",
+          "nl": "@myusername",
+          "de": "@myusername",
+          "fr": "@myusername",
+          "es": "@myusername",
+          "it": "@myusername",
+          "da": "@myusername",
+          "sv": "@myusername",
+          "no": "@myusername",
+          "pl": "@myusername",
+          "ru": "@myusername",
+          "ar": "@myusername",
+          "ko": "@myusername"
+        },
+        "passwordLabel": {
+          "en": "Group API key",
+          "nl": "Groeps-API-sleutel",
+          "de": "Gruppen-API-Schlüssel",
+          "fr": "Clé API de groupe",
+          "es": "Clave API de grupo",
+          "it": "Chiave API del gruppo",
+          "da": "Gruppe-API-nøgle",
+          "sv": "Grupp-API-nyckel",
+          "no": "Gruppe-API-nøkkel",
+          "pl": "Klucz API grupy",
+          "ru": "API-ключ группы",
+          "ar": "مفتاح API للمجموعة",
+          "ko": "그룹 API 키"
+        },
+        "passwordPlaceholder": {
+          "en": "Only for group messages",
+          "nl": "Alleen voor groepsberichten",
+          "de": "Nur für Gruppennachrichten",
+          "fr": "Uniquement pour les messages de groupe",
+          "es": "Solo para mensajes de grupo",
+          "it": "Solo per messaggi di gruppo",
+          "da": "Kun til gruppebeskeder",
+          "sv": "Endast för gruppmeddelanden",
+          "no": "Kun for gruppemeldinger",
+          "pl": "Tylko dla wiadomości grupowych",
+          "ru": "Только для групповых сообщений",
+          "ar": "لرسائل المجموعات فقط",
+          "ko": "그룹 메시지 전용"
+        }
+      }
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      },
+      "options": {
+        "singular": true
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ]
 }
