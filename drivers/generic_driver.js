@@ -22,6 +22,7 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 const Homey = require('homey');
 
 const stripHtml = (html) => html
+  .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, ' ')
   .replace(/<\/?(p|h\d|br|div|li)\b[^>]*>/gi, ' ')
   .replace(/<[^>]+>/g, '')
   .replace(/\s+/g, ' ')
