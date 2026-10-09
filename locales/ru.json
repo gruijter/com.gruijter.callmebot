@@ -12,5 +12,8 @@
       "deleteWarning": "Вы уверены?",
       "deleted": "Журналы удалены"
     }
+  },
+  "errors": {
+    "telegramNotAuthorized": "CallMeBot пока не может отправлять сообщения __user__. Укажите своё @имя пользователя Telegram (номер телефона не подходит), отправьте /start боту @CallMeBot_txtbot в Telegram и повторите попытку."
   }
 }

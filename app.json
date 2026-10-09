@@ -1228,19 +1228,19 @@
           "template": "login_credentials",
           "options": {
             "usernameLabel": {
-              "en": "Username or phone number",
-              "nl": "Gebruikersnaam of telefoonnummer",
-              "de": "Benutzername oder Telefonnummer",
-              "fr": "Nom d'utilisateur ou numéro de téléphone",
-              "es": "Nombre de usuario o número de teléfono",
-              "it": "Nome utente o numero di telefono",
-              "da": "Brugernavn eller telefonnummer",
-              "sv": "Användarnamn eller telefonnummer",
-              "no": "Brukernavn eller telefonnummer",
-              "pl": "Nazwa użytkownika lub numer telefonu",
-              "ru": "Имя пользователя или номер телефона",
-              "ar": "اسم المستخدم أو رقم الهاتف",
-              "ko": "사용자 이름 또는 전화번호"
+              "en": "Telegram username",
+              "nl": "Telegram-gebruikersnaam",
+              "de": "Telegram-Benutzername",
+              "fr": "Nom d'utilisateur Telegram",
+              "es": "Nombre de usuario de Telegram",
+              "it": "Nome utente Telegram",
+              "da": "Telegram-brugernavn",
+              "sv": "Telegram-användarnamn",
+              "no": "Telegram-brukernavn",
+              "pl": "Nazwa użytkownika Telegram",
+              "ru": "Имя пользователя Telegram",
+              "ar": "اسم مستخدم Telegram",
+              "ko": "Telegram 사용자 이름"
             },
             "usernamePlaceholder": {
               "en": "@myusername",

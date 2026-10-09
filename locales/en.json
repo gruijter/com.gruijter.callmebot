@@ -1,16 +1,19 @@
 {
-    "settings": {
-      "benefit": "Let Homey send messages to your phone",
-      "tab1": {
-        "title": "Settings",
-        "instructionsTitle": "Instructions",
-        "instructions": "Add a receiving phone via Homey Devices. You can choose from a number of messaging services. Go to callmebot.com for instructions how to get a free apikey. Enter the apikey in the login screen, together with the receiving phone number with country code (or @username for Telegram). Now you can start sending text messages from a flow."
-      },
-      "tab2": {
-        "title": "Logs",
-        "deleteLogs": "Delete logs",
-        "deleteWarning": "Are you sure?",
-        "deleted": "Logs deleted"
-      }
+  "settings": {
+    "benefit": "Let Homey send messages to your phone",
+    "tab1": {
+      "title": "Settings",
+      "instructionsTitle": "Instructions",
+      "instructions": "Add a receiving phone via Homey Devices. You can choose from a number of messaging services. Go to callmebot.com for instructions how to get a free apikey. Enter the apikey in the login screen, together with the receiving phone number with country code (or @username for Telegram). Now you can start sending text messages from a flow."
+    },
+    "tab2": {
+      "title": "Logs",
+      "deleteLogs": "Delete logs",
+      "deleteWarning": "Are you sure?",
+      "deleted": "Logs deleted"
     }
+  },
+  "errors": {
+    "telegramNotAuthorized": "CallMeBot may not send messages to __user__ yet. Enter your Telegram @username (a phone number does not work), send /start to @CallMeBot_txtbot in Telegram, and try again."
   }
+}

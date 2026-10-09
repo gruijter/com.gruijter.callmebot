@@ -29,9 +29,9 @@ Add the Signal device in Homey and fill in your phone number including the count
 Add the Facebook device in Homey and fill in a name for the device and your apikey. You can now start sending messages from a flow.
 
 ## Telegram
-1) Use your Telegram to send /start to @CallMeBot_txtbot. Or click here: https://api2.callmebot.com/txt/login.php
+1) In Telegram, send /start to @CallMeBot_txtbot (https://t.me/CallMeBot_txtbot).
 
-Add the Telegram device in Homey and fill in your user name (e.g. @myusername or +331234567890). The Group API key field is only needed for group messages (see below), and can otherwise be left empty or filled with any text. You can now start sending messages from a flow.
+Add the Telegram device in Homey and fill in your Telegram username (e.g. @myusername). A phone number does not work. The Group API key field is only needed for group messages (see below), and can otherwise be left empty or filled with any text. You can now start sending messages from a flow.
 
 ## Telegram group messages
 1) Authorize CallMeBot as described under Telegram above.

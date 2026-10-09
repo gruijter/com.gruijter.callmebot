@@ -12,5 +12,8 @@
       "deleteWarning": "Weet je het zeker?",
       "deleted": "Logboek verwijderd"
     }
+  },
+  "errors": {
+    "telegramNotAuthorized": "CallMeBot mag nog geen berichten sturen naar __user__. Vul je Telegram-@gebruikersnaam in (een telefoonnummer werkt niet), stuur in Telegram /start naar @CallMeBot_txtbot en probeer het opnieuw."
   }
 }

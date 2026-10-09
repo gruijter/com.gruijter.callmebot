@@ -12,5 +12,8 @@
       "deleteWarning": "Er du sikker?",
       "deleted": "Logfiler slettet"
     }
+  },
+  "errors": {
+    "telegramNotAuthorized": "CallMeBot må endnu ikke sende beskeder til __user__. Indtast dit Telegram-@brugernavn (et telefonnummer virker ikke), send /start til @CallMeBot_txtbot i Telegram, og prøv igen."
   }
 }

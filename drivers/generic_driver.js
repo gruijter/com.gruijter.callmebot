@@ -21,8 +21,20 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 
 const Homey = require('homey');
 
-const stripHtml = (html) => html
+// links are not clickable in Homey, so the url is shown after the link text
+const linkText = (baseUrl) => (match, href, label) => {
+  try {
+    const link = new URL(href.replace(/&amp;/g, '&'), baseUrl);
+    if (!href.trim() || !link.protocol.startsWith('http')) return label;
+    return `${label} ( ${link.href} )`;
+  } catch (error) {
+    return label;
+  }
+};
+
+const stripHtml = (html, baseUrl) => html
   .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, ' ')
+  .replace(/<a\b[^>]*?\bhref\s*=\s*["']([^"']*)["'][^>]*>([\s\S]*?)<\/a\s*>/gi, linkText(baseUrl))
   .replace(/<\/?(p|h\d|br|div|li)\b[^>]*>/gi, ' ')
   .replace(/<[^>]+>/g, '')
   .replace(/\s+/g, ' ')
@@ -87,7 +99,10 @@ class Driver extends Homey.Driver {
       signal: AbortSignal.timeout(30000),
     });
     const body = await response.text();
-    const message = stripHtml(body);
+    const message = stripHtml(body, url);
+    if (query.user && body.includes('Permission denied')) {
+      throw new Error(this.homey.__('errors.telegramNotAuthorized', { user: query.user }));
+    }
     if (response.status !== 200) throw new Error(`${response.status}: ${errorText(message).slice(0, 300)}`);
     if (!okTexts.some((text) => body.includes(text))) throw new Error(errorText(message));
     return message;

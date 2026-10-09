@@ -12,5 +12,8 @@
       "deleteWarning": "확실합니까?",
       "deleted": "로그가 삭제되었습니다"
     }
+  },
+  "errors": {
+    "telegramNotAuthorized": "CallMeBot은 아직 __user__에게 메시지를 보낼 수 없습니다. Telegram @사용자 이름을 입력하고(전화번호는 사용할 수 없음), Telegram에서 @CallMeBot_txtbot에 /start를 보낸 후 다시 시도하세요."
   }
 }

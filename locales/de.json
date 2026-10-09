@@ -12,5 +12,8 @@
       "deleteWarning": "Sind Sie sicher?",
       "deleted": "Protokolle gelöscht"
     }
+  },
+  "errors": {
+    "telegramNotAuthorized": "CallMeBot darf noch keine Nachrichten an __user__ senden. Gib deinen Telegram-@Benutzernamen ein (eine Telefonnummer funktioniert nicht), sende in Telegram /start an @CallMeBot_txtbot und versuche es erneut."
   }
 }

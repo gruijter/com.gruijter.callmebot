@@ -12,5 +12,8 @@
       "deleteWarning": "هل أنت متأكد؟",
       "deleted": "تم حذف السجلات"
     }
+  },
+  "errors": {
+    "telegramNotAuthorized": "لا يُسمح لـ CallMeBot بعد بإرسال رسائل إلى __user__. أدخل @اسم المستخدم الخاص بك في Telegram (رقم الهاتف لا يعمل)، وأرسل ‎/start إلى ‎@CallMeBot_txtbot في Telegram، ثم حاول مرة أخرى."
   }
 }
