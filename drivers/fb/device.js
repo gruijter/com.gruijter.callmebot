@@ -21,16 +21,6 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 
 const GenericDevice = require('../generic_device');
 
-const deviceSpecifics = {
-};
-
-class fbDevice extends GenericDevice {
-
-  onInit() {
-    this.ds = deviceSpecifics;
-    this.onInitDevice().catch(this.error);
-  }
-
-}
+class fbDevice extends GenericDevice {}
 
 module.exports = fbDevice;

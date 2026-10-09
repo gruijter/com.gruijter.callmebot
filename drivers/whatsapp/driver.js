@@ -24,12 +24,13 @@ const GenericDriver = require('../generic_driver');
 const driverSpecifics = {
   driverId: 'whatsapp',
   path: '/whatsapp.php',
+  recipientParam: 'phone',
+  usesApikey: true,
   // https://api.callmebot.com/whatsapp.php?phone=[phone_number]&text=[message]&apikey=[your_apikey]
 };
 
 class WhatsAppDriver extends GenericDriver {
   onInit() {
-    // this.log('driver onInit');
     this.ds = driverSpecifics;
     this.onDriverInit().catch(this.error);
   }

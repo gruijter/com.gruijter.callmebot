@@ -25,13 +25,13 @@ const driverSpecifics = {
   driverId: 'fb',
   path: '/facebook/send.php',
   imagePath: '/facebook/send.php',
+  usesApikey: true,
   // https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&text=[message]
   // https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&image=[image_url]
 };
 
 class fbDriver extends GenericDriver {
   onInit() {
-    // this.log('driver onInit');
     this.ds = driverSpecifics;
     this.onDriverInit().catch(this.error);
   }

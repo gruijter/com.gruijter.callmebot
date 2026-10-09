@@ -26,13 +26,15 @@ const driverSpecifics = {
   path: '/text.php',
   voicePath: '/start.php',
   groupPath: '/telegram/group.php',
+  recipientParam: 'user',
+  usesApikey: false,
   // https://api.callmebot.com/text.php?user=[username]&text=[text]&html=[html_format]&links=[link_preview]
-  // http://api.callmebot.com/start.php?user=@username&text=This+is+a+robot+calling+you+to+inform+you+about+something+urgent+that+is+happening&lang=en-GB-Standard-B&rpt=2
+  // https://api.callmebot.com/start.php?user=[username]&text=[text]&lang=[language]&rpt=[repeat]
+  // https://api.callmebot.com/telegram/group.php?apikey=[apikey]&text=[text message]&html=[html_format]
 };
 
 class telegramDriver extends GenericDriver {
   onInit() {
-    // this.log('driver onInit');
     this.ds = driverSpecifics;
     this.onDriverInit().catch(this.error);
   }

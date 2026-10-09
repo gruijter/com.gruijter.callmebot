@@ -26,13 +26,14 @@ const driverSpecifics = {
   hostname: 'signal.callmebot.com',
   path: '/signal/send.php',
   imagePath: '/signal/send.php',
+  recipientParam: 'phone',
+  usesApikey: true,
   // https://signal.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
   // https://signal.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&image=[url_image]
 };
 
 class signalDriver extends GenericDriver {
   onInit() {
-    // this.log('driver onInit');
     this.ds = driverSpecifics;
     this.onDriverInit().catch(this.error);
   }

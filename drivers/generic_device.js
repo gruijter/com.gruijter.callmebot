@@ -26,11 +26,6 @@ const { pipeline } = require('stream/promises');
 
 class Device extends Homey.Device {
 
-  // this method is called when the Device is inited
-  async onInitDevice() {
-    // settings are read at send time, so changes apply without a restart
-  }
-
   // this method is called when the Device is added
   onAdded() {
     this.log(`Added as device: ${this.getName()}`);
@@ -81,68 +76,10 @@ class Device extends Homey.Device {
     }
   }
 
-  async sendImage(args) {
-    // get the image token
-    const image = await (args.image || args.droptoken);
-    if (!image) throw new Error('No valid image provided.');
-
-    // rate limit fb
-    const { driverId } = args.device.driver.ds;
-    if (driverId === 'fb') {
-      if ((Date.now() - this.lastFbImageSent) < 65000) throw new Error('Only 1 image per minute allowed for Facebook.');
-      this.lastFbImageSent = Date.now();
-    }
-
-    const args2 = { ...args };
-    let tempImagePath = null;
-
+  // runs a send action, updates last_sent and logs the result; errors are passed on to the flow
+  async runSend(action) {
     try {
-      // Prefer using the existing public cloud URL if available.
-      if (image.cloudUrl) {
-        this.log('Using existing image cloudUrl');
-        args2.imgUrl = image.cloudUrl;
-      } else {
-        // If no cloudUrl, stage the image locally and create a public connect URL.
-        this.log('Staging image locally...');
-        if (!image.getStream) throw new Error('Image is not streamable.');
-
-        const imgStream = await image.getStream();
-        const filename = `${Date.now()}_${imgStream.filename || 'image.jpg'}`;
-        tempImagePath = `/userdata/${filename}`;
-
-        // Save the image stream to a temporary file using a robust pipeline.
-        await pipeline(imgStream, fs.createWriteStream(tempImagePath));
-        this.log('Image saved to', tempImagePath);
-
-        // Create a public URL for the staged file.
-        const cloudID = await this.homey.cloud.getHomeyId();
-        args2.imgUrl = `https://${cloudID}.connect.athom.com/app/com.gruijter.callmebot/userdata/${filename}`;
-      }
-
-      const result = await this.driver.sendImage(args2);
-      this.updateLastSent();
-      this.log(result);
-      return true;
-    } catch (error) {
-      this.error(error);
-      throw error; // Re-throw to notify the flow of failure.
-    } finally {
-      // Clean up the staged file after the API call is complete.
-      if (tempImagePath) {
-        // Use a small delay before deleting, just in case the API fetches the URL asynchronously after returning a 200 OK.
-        this.homey.setTimeout(() => {
-          this.deleteFile(tempImagePath).catch(this.error);
-        }, 5000); // 5-second delay
-      }
-    }
-  }
-
-  async sendVoice(args) {
-    try {
-      const now = Date.now();
-      if ((now - this.lastVoiceCall) < 65 * 1000) throw Error('Only one voicecall per minute allowed');
-      this.lastVoiceCall = now;
-      const result = await this.driver.sendVoice(args);
+      const result = await action();
       this.updateLastSent();
       this.log(result);
       return true;
@@ -153,27 +90,56 @@ class Device extends Homey.Device {
   }
 
   async send(args) {
-    try {
-      const result = await this.driver.send(args);
-      this.updateLastSent();
-      this.log(result);
-      return true;
-    } catch (error) {
-      this.error(error);
-      throw error;
-    }
+    return this.runSend(() => this.driver.send(this.getSettings(), args.msg));
   }
 
   async sendGroup(args) {
-    try {
-      const result = await this.driver.sendGroup(args);
-      this.updateLastSent();
-      this.log(result);
-      return true;
-    } catch (error) {
-      this.error(error);
-      throw error;
-    }
+    return this.runSend(() => this.driver.sendGroup(this.getSettings(), args.msg));
+  }
+
+  async sendVoice(args) {
+    return this.runSend(() => {
+      const now = Date.now();
+      if ((now - this.lastVoiceCall) < 65 * 1000) throw Error('Only one voicecall per minute allowed');
+      this.lastVoiceCall = now;
+      const langId = args.language?.id || args.language;
+      const voiceId = args.voice?.id || args.voice;
+      return this.driver.sendVoice(this.getSettings(), args.msg, langId, voiceId);
+    });
+  }
+
+  async sendImage(args) {
+    return this.runSend(async () => {
+      const image = await (args.image || args.droptoken);
+      if (!image) throw new Error('No valid image provided.');
+
+      if (this.driver.ds.driverId === 'fb') {
+        if ((Date.now() - this.lastFbImageSent) < 65000) throw new Error('Only 1 image per minute allowed for Facebook.');
+        this.lastFbImageSent = Date.now();
+      }
+
+      if (image.cloudUrl) {
+        this.log('Using existing image cloudUrl');
+        return this.driver.sendImage(this.getSettings(), image.cloudUrl);
+      }
+
+      // no cloudUrl: stage the image in /userdata, which is reachable through the Homey cloud url
+      if (!image.getStream) throw new Error('Image is not streamable.');
+      const imgStream = await image.getStream();
+      const filename = `${Date.now()}_${imgStream.filename || 'image.jpg'}`;
+      const tempImagePath = `/userdata/${filename}`;
+      try {
+        await pipeline(imgStream, fs.createWriteStream(tempImagePath));
+        const cloudID = await this.homey.cloud.getHomeyId();
+        const imgUrl = `https://${cloudID}.connect.athom.com/app/com.gruijter.callmebot/userdata/${filename}`;
+        return await this.driver.sendImage(this.getSettings(), imgUrl);
+      } finally {
+        // delay, in case CallMeBot fetches the image after it has responded
+        this.homey.setTimeout(() => {
+          this.deleteFile(tempImagePath).catch(this.error);
+        }, 5000);
+      }
+    });
   }
 
 }
