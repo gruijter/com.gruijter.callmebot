@@ -39,7 +39,7 @@ class Device extends Homey.Device {
   }
 
   // this method is called when the Device is added
-  async onAdded() {
+  onAdded() {
     this.log(`Added as device: ${this.getName()}`);
   }
 
@@ -142,7 +142,7 @@ class Device extends Homey.Device {
       // Clean up the staged file after the API call is complete.
       if (tempImagePath) {
         // Use a small delay before deleting, just in case the API fetches the URL asynchronously after returning a 200 OK.
-        setTimeout(() => {
+        this.homey.setTimeout(() => {
           this.deleteFile(tempImagePath).catch(this.error);
         }, 5000); // 5-second delay
       }

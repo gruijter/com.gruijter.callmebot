@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars, strict -- functions are called from index.html */
 /* eslint-disable no-undef */
 
 'use strict';
