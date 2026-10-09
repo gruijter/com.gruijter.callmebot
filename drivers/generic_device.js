@@ -45,8 +45,6 @@ class Device extends Homey.Device {
 
   // this method is called when the Device is deleted
   onDeleted() {
-    this.stopPolling();
-    // this.destroyListeners();
     this.log(`Deleted as device: ${this.getName()}`);
   }
 
