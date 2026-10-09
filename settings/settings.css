@@ -1,0 +1,71 @@
+/* !important throughout: Homey's stylesheet applies its .homey-* rules after this one at equal
+   specificity. Homey's elements use box-sizing: content-box, so every selector that adds
+   padding/border also sets border-box, or it overflows the settings page horizontally. */
+
+/* top nav as a flat tab strip, the active tab marked by weight + accent underline */
+.tab-nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-bottom: 24px;
+	border-bottom: 2px solid rgba(128, 128, 128, 0.2);
+}
+.tab-nav button {
+	flex: 1 1 auto;
+	box-sizing: border-box !important;
+	background: none !important;
+	box-shadow: none !important;
+	border: none !important;
+	border-bottom: 3px solid transparent !important;
+	border-radius: 0 !important;
+	padding: 10px 6px !important;
+	color: inherit !important;
+	opacity: 0.6;
+	font-weight: 500 !important;
+}
+.tab-nav button.homey-button-primary {
+	opacity: 1;
+	font-weight: 700 !important;
+	border-bottom-color: #2196f3 !important;
+}
+
+/* each section as a card; homey-form-fieldset alone has no border/spacing */
+fieldset.homey-form-fieldset {
+	box-sizing: border-box !important;
+	margin: 0 0 24px !important;
+	padding: 18px 20px !important;
+	border: 1px solid rgba(128, 128, 128, 0.3) !important;
+	border-radius: 10px !important;
+	background: rgba(128, 128, 128, 0.045) !important;
+	min-width: 0 !important;
+}
+.homey-form-legend {
+	display: block !important;
+	width: 100%;
+	font-weight: 700 !important;
+	font-size: 13px !important;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	opacity: 0.75;
+	margin-bottom: 10px !important;
+	padding-bottom: 8px;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+/* filled danger button instead of Homey's default bare-text treatment */
+.homey-button-danger {
+	box-sizing: border-box !important;
+	border: none !important;
+	border-radius: 8px !important;
+	padding: 10px 18px !important;
+	font-weight: 600 !important;
+	background: #e53935 !important;
+	color: #fff !important;
+}
+
+#loglines {
+	font-size: 11px;
+	line-height: 1.5;
+	white-space: pre-wrap;
+	word-break: break-all;
+}

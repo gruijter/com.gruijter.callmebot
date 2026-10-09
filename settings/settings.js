@@ -5,7 +5,7 @@
 
 // tab 2 stuff here
 function displayLogs(lines) {
-  document.getElementById('loglines').innerHTML = lines;
+  document.getElementById('loglines').textContent = lines;
 }
 
 function updateLogs() {
@@ -51,29 +51,15 @@ function deleteLogs() {
 
 // generic stuff here
 function showTab(tab) {
-  document.querySelectorAll('.tab').forEach((el) => {
-    el.classList.remove('tab-active');
-    el.classList.add('tab-inactive');
+  [1, 2].forEach((t) => {
+    document.getElementById(`tab${t}`).style.display = t === tab ? '' : 'none';
+    document.getElementById(`tabb${t}`).className = t === tab ? 'homey-button-primary' : 'homey-button-secondary';
   });
-  const activeTab = document.getElementById(`tabb${tab}`);
-  if (activeTab) {
-    activeTab.classList.remove('tab-inactive');
-    activeTab.classList.add('tab-active');
-  }
-  document.querySelectorAll('.panel').forEach((el) => {
-    el.style.display = 'none';
-  });
-  const activePanel = document.getElementById(`tab${tab}`);
-  if (activePanel) {
-    activePanel.style.display = 'block';
-  }
   if (tab === 2) updateLogs();
 }
 
 function onHomeyReady(homeyReady) {
   window.Homey = homeyReady;
+  showTab(1);
   homeyReady.ready();
-  setTimeout(() => {
-    showTab(1);
-  }, 50);
 }
