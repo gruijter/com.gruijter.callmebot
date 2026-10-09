@@ -49,10 +49,7 @@ class Driver extends Homey.Driver {
 
         const args = {
           device: {
-            settings: {
-              number,
-              apikey,
-            },
+            getSettings: () => ({ number, apikey }),
             driver: {
               ds: {
                 driverId: this.ds.driverId,
@@ -91,12 +88,12 @@ class Driver extends Homey.Driver {
   async sendImage(args) {
     const { driverId } = args.device.driver.ds;
     const query = {};
-    // if (driverId === 'telegram') query.user = args.device.settings.number;
+    // if (driverId === 'telegram') query.user = args.device.getSettings().number;
     if (driverId === 'signal' || driverId === 'whatsapp') {
-      query.phone = args.device.settings.number;
+      query.phone = args.device.getSettings().number;
     }
     if (driverId === 'signal' || driverId === 'whatsapp' || driverId === 'fb') {
-      query.apikey = args.device.settings.apikey;
+      query.apikey = args.device.getSettings().apikey;
     }
     query.image = args.imgUrl;
     const headers = {
@@ -125,7 +122,7 @@ class Driver extends Homey.Driver {
     const langId = args.language?.id || args.language;
     const voiceId = args.voice?.id || args.voice;
     const query = {
-      user: args.device.settings.number,
+      user: args.device.getSettings().number,
       text: args.msg,
       lang: `${langId}-Standard-${voiceId}`,
       rpt: 2, // number to repeat msg
@@ -160,12 +157,12 @@ class Driver extends Homey.Driver {
     const query = {
       text: args.msg,
     };
-    if (driverId === 'telegram') query.user = args.device.settings.number;
+    if (driverId === 'telegram') query.user = args.device.getSettings().number;
     if (driverId === 'signal' || driverId === 'whatsapp') {
-      query.phone = args.device.settings.number;
+      query.phone = args.device.getSettings().number;
     }
     if (driverId === 'signal' || driverId === 'whatsapp' || driverId === 'fb') {
-      query.apikey = args.device.settings.apikey;
+      query.apikey = args.device.getSettings().apikey;
     }
 
     const headers = {
@@ -195,7 +192,7 @@ class Driver extends Homey.Driver {
 
   async sendGroup(args) {
     const query = {
-      apikey: args.device.settings.apikey,
+      apikey: args.device.getSettings().apikey,
       // html: 'no',
       text: args.msg,
     };

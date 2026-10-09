@@ -28,14 +28,7 @@ class Device extends Homey.Device {
 
   // this method is called when the Device is inited
   async onInitDevice() {
-    // this.log('device init: ', this.getName(), 'id:', this.getData().id);
-    try {
-      // init some stuff
-      this.settings = await this.getSettings();
-
-    } catch (error) {
-      this.error(error);
-    }
+    // settings are read at send time, so changes apply without a restart
   }
 
   // this method is called when the Device is added
@@ -53,11 +46,8 @@ class Device extends Homey.Device {
   }
 
   // this method is called when the user has changed the device's settings in Homey.
-  async onSettings() { // { newSettings }) {
+  async onSettings() {
     this.log(`${this.getName()} device settings changed by user`);
-    // do callback to confirm settings change
-    this.onInit().catch(this.error);
-    return Promise.resolve('settings are saved'); // string can be returned to user
   }
 
   setCapability(capability, value) {
