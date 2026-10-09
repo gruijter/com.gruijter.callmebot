@@ -4,7 +4,7 @@
     "tab1": {
       "title": "Ustawienia",
       "instructionsTitle": "Instrukcje",
-      "instructions": "Dodaj telefon odbierający przez Urządzenia Homey. Możesz wybrać spośród wielu usług komunikatorów. Wejdź na callmebot.com, aby uzyskać instrukcje, jak zdobyć darmowy apikey. Wpisz apikey na ekranie logowania wraz z numerem telefonu odbierającego (lub Phone ID dla Signal). Teraz możesz zacząć wysyłać wiadomości tekstowe z flow."
+      "instructions": "Dodaj telefon odbierający przez Urządzenia Homey. Możesz wybrać spośród wielu usług komunikatorów. Wejdź na callmebot.com, aby uzyskać instrukcje, jak zdobyć darmowy apikey. Wpisz apikey na ekranie logowania wraz z numerem telefonu odbierającego z kodem kraju (lub @nazwą użytkownika dla Telegram). Teraz możesz zacząć wysyłać wiadomości tekstowe z flow."
     },
     "tab2": {
       "title": "Logi",

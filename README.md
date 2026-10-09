@@ -4,18 +4,22 @@ Have Homey send messages to your own preferred messenger service. You can add mu
 You need to get a personal APIkey before using the API. Keep this key secret so only you can send messages to yourself!
 
 ## WhatsApp
-1) Add the phone number +34 644 51 95 23 into your Phone Contacts. Name it "Homey CallMeBot WhatsApp".
-2) Send this message "I allow callmebot to send me messages" to the new Contact created (using your WhatsApp of course)
+Follow the activation steps on https://www.callmebot.com/blog/free-api-whatsapp-messages/
+1) Add the CallMeBot WhatsApp number shown on that page to your Phone Contacts.
+2) Send this message "I allow callmebot to send me messages" to the new Contact (using WhatsApp).
 3) The bot will answer you with your personal apikey.
 
-Add the WhatsApp device in Homey and fill in your phone number and apikey. You can now start sending messages from a flow.
+Add the WhatsApp device in Homey and fill in your phone number including the country code (e.g. +31 6 12345678) and the apikey. You can now start sending messages from a flow.
+
+If sending fails with "Your Account is Paused", send the word "resume" to the CallMeBot WhatsApp contact.
 
 ## Signal
-1) Add the phone number +34 603 21 25 97 into your Phone Contacts. Name it "Homey CallMeBot Signal".
-2) Send this message "I allow callmebot to send me messages" to the new Contact created (using your Signal Messaging of course)
-3) The bot will answer you with your personal apikey and a phone ID.
+Follow the activation steps on https://www.callmebot.com/blog/free-api-signal-send-messages/
+1) Add the CallMeBot Signal number shown on that page to your Phone Contacts.
+2) Send this message "I allow callmebot to send me messages" to the new Contact (using Signal).
+3) The bot will answer you with your personal apikey.
 
-Add the Signal device in Homey and fill in your phone ID (provided by the bot, do not use your actual phone number) and apikey. You can now start sending messages from a flow.
+Add the Signal device in Homey and fill in your phone number including the country code (e.g. +31 6 12345678) and the apikey. If the bot cannot see your phone number because of your Signal privacy settings, it gives you a UUID instead; use that UUID in place of the phone number. You can now start sending messages from a flow.
 
 ## Facebook messenger
 1) Start a Facebook Messenger conversation with @api.callmebot. Or click here: https://m.me/api.callmebot
@@ -29,8 +33,14 @@ Add the Facebook device in Homey and fill in your apikey. The username field req
 
 Add the Telegram device in Homey and fill in your user name (e.g. @myusername or +331234567890). The apikey field required during setup is not used for personal messages and can be left empty or filled with any text. You can now start sending messages from a flow.
 
+## Telegram group messages
+1) Authorize CallMeBot as described under Telegram above.
+2) Add @API_CallMeBot to your Telegram group and get the group apikey as described on https://www.callmebot.com/blog/telegram-group-messages-api-easy/
+
+Enter that apikey in the Telegram device, and use the "Send a group message" flow card.
+
 ## Send Voice Messages
-With Telegram you can start a voice call from a flow. The text will be converted to speech in a selection of languages. You can choose between a male and a female voice. As one time setup you need to allow @CallMeBot_API4 to send you messages.
+With Telegram you can start a voice call from a flow. The text (max. 256 characters) will be converted to speech in a selection of languages. You can choose between a male and a female voice. The one time Telegram authorization above (/start to @CallMeBot_txtbot) also allows CallMeBot to call you.
 
 ## Send Images
 With Signal and FB messenger you can send images via a flow.
