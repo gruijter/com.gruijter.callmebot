@@ -21,6 +21,12 @@ along with com.gruijter.callmebot. If not, see <http://www.gnu.org/licenses/>.
 
 const Homey = require('homey');
 
+const stripHtml = (html) => html
+  .replace(/<\/?(p|h\d|br|div|li)\b[^>]*>/gi, ' ')
+  .replace(/<[^>]+>/g, '')
+  .replace(/\s+/g, ' ')
+  .trim();
+
 class Driver extends Homey.Driver {
 
   async onDriverInit() {
@@ -101,9 +107,9 @@ class Driver extends Homey.Driver {
     };
     const result = await this._makeHttpsRequest(options, '');
     if (result.statusCode !== 200) {
-      throw new Error(`${result.statusCode}: ${result.body.slice(0, 250)}`);
+      throw new Error(`${result.statusCode}: ${stripHtml(result.body).slice(0, 300)}`);
     }
-    const strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    const strippedString = stripHtml(result.body);
     const signalOK = result.body.includes('Image sent to');
     const fbOK = result.body.includes('Message sent');
 
@@ -132,10 +138,10 @@ class Driver extends Homey.Driver {
     };
     const result = await this._makeHttpsRequest(options, '');
     if (result.statusCode !== 200) {
-      throw new Error(`${result.statusCode}: ${result.body.slice(0, 250)}`);
+      throw new Error(`${result.statusCode}: ${stripHtml(result.body).slice(0, 300)}`);
     }
 
-    let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    let strippedString = stripHtml(result.body);
     const telegramOK = result.body.includes('Call ended after');
     if (telegramOK) strippedString = 'Call successfully ended';
     if (!telegramOK) throw new Error(strippedString);
@@ -170,10 +176,10 @@ class Driver extends Homey.Driver {
     };
     const result = await this._makeHttpsRequest(options, '');
     if (result.statusCode !== 200) {
-      throw new Error(`${result.statusCode}: ${result.body.slice(0, 250)}`);
+      throw new Error(`${result.statusCode}: ${stripHtml(result.body).slice(0, 300)}`);
     }
 
-    let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    let strippedString = stripHtml(result.body);
     const signalOK = result.body.includes('Message sent to');
     const whatsappOK = result.body.includes('Message queued');
     const fbOK = result.body.includes('Message sent');
@@ -201,9 +207,9 @@ class Driver extends Homey.Driver {
     };
     const result = await this._makeHttpsRequest(options, '');
     if (result.statusCode !== 200) {
-      throw new Error(`${result.statusCode}: ${result.body.slice(0, 250)}`);
+      throw new Error(`${result.statusCode}: ${stripHtml(result.body).slice(0, 300)}`);
     }
-    let strippedString = result.body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    let strippedString = stripHtml(result.body);
     const telegramOK = result.body.includes('Status: Successful');
     if (telegramOK) strippedString = 'Status: Successful';
     if (!telegramOK) throw new Error(strippedString);
