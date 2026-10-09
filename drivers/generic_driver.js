@@ -86,7 +86,7 @@ class Driver extends Homey.Driver {
 
   }
 
-  // https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&image=[url_image]
+  // https://signal.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&image=[url_image]
   // https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&image=[image_url]
   async sendImage(args) {
     const { driverId } = args.device.driver.ds;
@@ -103,7 +103,7 @@ class Driver extends Homey.Driver {
       // 'Cache-Control': 'no-cache',
     };
     const options = {
-      hostname: 'api.callmebot.com',
+      hostname: this.ds.hostname || 'api.callmebot.com',
       path: `${this.ds.imagePath}?${toQueryString(query)}`,
       headers,
       method: 'GET',
@@ -134,7 +134,7 @@ class Driver extends Homey.Driver {
       'Cache-Control': 'no-cache',
     };
     const options = {
-      hostname: 'api.callmebot.com',
+      hostname: this.ds.hostname || 'api.callmebot.com',
       path: `${this.ds.voicePath}?${toQueryString(query)}`,
       headers,
       method: 'GET',
@@ -150,7 +150,7 @@ class Driver extends Homey.Driver {
     if (!telegramOK) throw new Error(strippedString);
     return strippedString;
   }
-  // https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
+  // https://signal.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
   // https://api.callmebot.com/whatsapp.php?phone=[phone_number]&text=[message]&apikey=[your_apikey]
   // https://api.callmebot.com/facebook/send.php?apikey=[your_apikey]&text=[message]
   // https://api.callmebot.com/text.php?user=[username]&text=[text]&html=[html_format]&links=[link_preview]
@@ -172,7 +172,7 @@ class Driver extends Homey.Driver {
       'Cache-Control': 'no-cache',
     };
     const options = {
-      hostname: 'api.callmebot.com',
+      hostname: this.ds.hostname || 'api.callmebot.com',
       path: `${this.ds.path}?${toQueryString(query)}`,
       headers,
       method: 'GET',
@@ -203,7 +203,7 @@ class Driver extends Homey.Driver {
       // 'Cache-Control': 'no-cache',
     };
     const options = {
-      hostname: 'api.callmebot.com',
+      hostname: this.ds.hostname || 'api.callmebot.com',
       path: `${this.ds.groupPath}?${new URLSearchParams(query).toString()}`,
       headers,
       method: 'GET',

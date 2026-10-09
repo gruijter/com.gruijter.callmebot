@@ -23,10 +23,11 @@ const GenericDriver = require('../generic_driver');
 
 const driverSpecifics = {
   driverId: 'signal',
+  hostname: 'signal.callmebot.com',
   path: '/signal/send.php',
   imagePath: '/signal/send.php',
-  // https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
-  // https://api.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&image=[url_image]
+  // https://signal.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&text=[message]
+  // https://signal.callmebot.com/signal/send.php?phone=[phone_number]&apikey=[your_apikey]&image=[url_image]
 };
 
 class signalDriver extends GenericDriver {
