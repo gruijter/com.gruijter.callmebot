@@ -28,5 +28,8 @@
   },
   "2.0.0": {
     "en": "Complete app rewrite. Updated README. Added all translations. Many fixes and stability improvements."
+  },
+  "2.1.0": {
+    "en": "Fix + in messages. Fix Signal. Clearer error messages. Telegram now needs a @username, with instructions when CallMeBot is not yet authorized. Fix pairing FB Messenger with a device name. Fix crash when deleting a device. Updated settings page and translations."
   }
 }
