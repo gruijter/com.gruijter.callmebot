@@ -40,7 +40,8 @@ class captureLogs {
   async readLogs() {
     try {
       const log = await fs.readFile(this.logFile, 'utf8');
-      this.logArray = JSON.parse(log);
+      // keep lines captured while the file was being read
+      this.logArray = [...JSON.parse(log), ...this.logArray].slice(-this.logLength);
       this.homey.log('logfile retrieved');
       return this.logArray;
     } catch (error) {
@@ -56,7 +57,10 @@ class captureLogs {
   async saveLogs() {
     try {
       this.homey.log('saving logfile...');
-      await fs.writeFile(this.logFile, JSON.stringify(this.logArray));
+      // write then rename, so an interrupted save cannot leave a truncated logfile
+      const tmpFile = `${this.logFile}.tmp`;
+      await fs.writeFile(tmpFile, JSON.stringify(this.logArray));
+      await fs.rename(tmpFile, this.logFile);
       return 'logfile saved';
     } catch (error) {
       this.homey.error('error writing logfile: ', error.message);
