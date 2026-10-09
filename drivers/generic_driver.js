@@ -43,16 +43,18 @@ class Driver extends Homey.Driver {
     let apikey = '';
 
     session.setHandler('login', async (data) => {
-      number = data.username.replace(/ /gi, '');
+      // without a recipient (fb) the username field is just a device name, so keep it as typed
+      number = this.ds.recipientParam ? data.username.replace(/ /gi, '') : data.username.trim();
       apikey = data.password;
       await this.send({ number, apikey }, 'Homey can send messages to this device!');
       return true;
     });
 
+    // without a recipient (fb) the name is not unique, so the id gets a timestamp instead
     session.setHandler('list_devices', () => [{
-      name: `${this.ds.driverId}_${number}`,
+      name: this.ds.recipientParam ? `${this.ds.driverId}_${number}` : number || this.ds.driverId,
       data: {
-        id: `${this.ds.driverId}_${number}`,
+        id: this.ds.recipientParam ? `${this.ds.driverId}_${number}` : `${this.ds.driverId}_${Date.now()}`,
       },
       settings: {
         number,
