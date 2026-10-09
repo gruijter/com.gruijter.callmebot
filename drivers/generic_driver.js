@@ -28,6 +28,12 @@ const stripHtml = (html) => html
   .replace(/\s+/g, ' ')
   .trim();
 
+// CallMeBot error pages echo the request (user, text, options) before the actual error; keep only the error
+const errorText = (message) => {
+  const index = message.indexOf('Error:');
+  return index >= 0 ? message.slice(index) : message;
+};
+
 // CallMeBot expects a literal + in the phone number; keep %2B everywhere else (+ means space)
 const toQueryString = (query) => new URLSearchParams(query).toString().replace(/(^|&)phone=%2B/, '$1phone=+');
 
@@ -82,8 +88,8 @@ class Driver extends Homey.Driver {
     });
     const body = await response.text();
     const message = stripHtml(body);
-    if (response.status !== 200) throw new Error(`${response.status}: ${message.slice(0, 300)}`);
-    if (!okTexts.some((text) => body.includes(text))) throw new Error(message);
+    if (response.status !== 200) throw new Error(`${response.status}: ${errorText(message).slice(0, 300)}`);
+    if (!okTexts.some((text) => body.includes(text))) throw new Error(errorText(message));
     return message;
   }
 
